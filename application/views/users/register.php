@@ -14,44 +14,41 @@
 
 	<body>
 		
+		<nav class="navbar sticky-top nave-barC">
+  		<!-- <span class="navbar-brand mb-0 h1">Navbar</span> -->
+  		<p class="history"> amount of .. and total project </p>
+		</nav>
+
 		<div class="container">
 			<div class="header">
 				<div class="row">
-				  <div class="col-xs-offset-2 col-xs-4 col-sm-offset-4 col-sm-2"><h1> Login</h1></div>
+				  <div class="col-xs-offset-2 col-xs-4 col-sm-offset-4 col-sm-2"><h1> Register <br><span>as</span> </h1></div>
 				</div>
 			</div>
 
-			<form>
-			  <div class="form-group row">
-			    <label for="inputEmail" class="col-sm-offset-2 col-sm-2 col-form-label">Email</label>
-			    <div class="col-sm-4">
-			      <input type="email" class="form-control" id="inputEmail">
-			    </div>
-			  </div>
-			  <div class="form-group row">
-			    <label for="inputPassword" class="col-sm-offset-2 col-sm-2 col-form-label">Password</label>
-			    <div class="col-sm-4">
-			      <input type="password" class="form-control" id="inputPassword">
-			    </div>
-			  </div>
-			  <div class="form-group row">
-			    <div class="col-xs-offset-2 col-xs-4 col-sm-offset-4 col-sm-4">
-           		<button type="submit" name="submit" class="button_style btn"> Login </button>
-          </div>
-			  </div>
+			<!-- <form class="form-inline">
+			<div class="form-group row">
+			    <div class="col-xs-offset-2 col-xs-4 col-sm-offset-4 col-sm-3">
+           		<button type="submit" name="submit-ngo" class="button_style btn"> NGO </button>
+          		</div>
+          		<div class="col-xs-offset-2 col-xs-4 col-sm-offset-1 col-sm-3">
+           		<button type="submit" name="submit-engg" class="button_style btn"> Engineer </button>
+          		</div>
+			</div>
+			</form> -->
+
+			<form class="form-inline">
+			<div class="form-group row register-buttons">
+				
+	           		<button type="submit" name="submit-ngo" class="button_style btn"> NGO </button>
+	          	
+	          		<button type="submit" name="submit-engg" class="button_style btn"> Engineer </button>
+	          	</div>
+          		</div>
+			</div>
 			</form>
-
-
-			<div class="row">
-			  <div class="col-sm-offset-4 col-sm-8"> <p> Don't have an account yet? </p></div>
-			</div>
-
-			<div class="row">
-			  <div class="col-sm-offset-5 col-sm-6"> <a href="#"> Register </a></div>
-			</div>
-
 		</div>
-		
+
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 		<!-- Latest compiled and minified JavaScript -->

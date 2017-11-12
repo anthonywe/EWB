@@ -14,4 +14,14 @@ $route['translate_uri_dashes'] = FALSE;
 // http://localhost/ci/
 // BaseURL + null
 $route['default_controller'] = 'users/home';
+$route['login'] = 'users/login';
+$route['register'] = 'users/register';
+$route['ngo_register'] = 'users/ngo_register';
+$route['engg_register'] = 'users/engg_register';
+
+
+
+
+
+
 

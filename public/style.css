@@ -1,0 +1,59 @@
+body{
+	font-family: 'Roboto', sans-serif;
+	font-size: 16 px;
+	color: #0D2B3E;
+}
+
+p{
+	font-family: 'Roboto', sans-serif;
+	font-size: 16 px;
+	color: #0D2B3E;
+}
+.nave-barC {
+	background-color: rgba(15,15,30,0.9);
+}
+.history{
+	font-family: 'Roboto', sans-serif;
+	font-size: 16 px;
+	color: rgba(141, 182, 195, 1);
+}
+.history:hover{
+	color: rgba(255, 0, 83, 1);
+}
+.button_style{
+	font-family: 'Roboto';
+	font-size: 16 px;
+	color: white;
+	width: 150px;
+	background-color: rgba(0, 144, 255, 1); 
+	font-weight: bold;
+}
+
+.button_style:hover{
+	color: white;
+}
+
+h1{
+	 /*  / 75 px Leading */
+	font-family: 'Roboto Condensed', sans-serif;
+	line-height: 75 px Leading;
+	font-size: 64 px;
+	color: #0D2B3E;
+}
+
+
+
+.header{
+	height: 20%;
+	margin:10% 20% 5% 20%;
+}
+.header span{
+	margin-left: 50%;
+}
+.register-buttons{
+	margin: 0% 35% 0% 35%;
+}
+button:hover{
+	background-color: rgba(255, 0, 83, 1);
+	color: white;
+}

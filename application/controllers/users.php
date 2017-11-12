@@ -9,4 +9,22 @@ class Users extends CI_Controller {
 		$this->load->view('users/index');
 	}
 
+	public function login()
+	{
+		$this->load->view('users/login');
+	}
+	public function register()
+	{
+		$this->load->view('users/register');
+	}
+	public function ngo_register()
+	{
+		$this->load->view('users/ngo-register');
+	}
+
+	public function engg_register()
+	{
+		$this->load->view('users/engg-register');
+	}
+
 }
