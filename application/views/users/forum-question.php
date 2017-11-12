@@ -66,16 +66,16 @@
 					<div class="question-box">
 						<p> questions should land here</p>
 						<form method="post" action="">
-						<div class="row">
-							<div class="col-lg-9 offset-lg-3">
-								<div class="input-group">
-									<input type="text" class="form-control" placeholder="Comment?" aria-label="Product name">
-									<span class="input-group-btn">
-										<button class="btn btn-secondary" type="button">Send</button>
-									</span>
+							<div class="row">
+								<div class="col-lg-9 offset-lg-3">
+									<div class="input-group">
+										<input type="text" class="form-control" placeholder="Comment?" aria-label="Product name">
+										<span class="input-group-btn">
+											<button class="btn btn-secondary" type="button">Send</button>
+										</span>
+									</div>
 								</div>
 							</div>
-						</div>
 						</form>
 					</div>
 				</div>
