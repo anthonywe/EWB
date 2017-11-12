@@ -9,5 +9,10 @@ class Users extends CI_Controller {
 		$this->load->view('users/forum-main');
 	}
 
+	public function form_question()
+	{
+		$this->load->view('users/forum-question');
+	}
+
 
 }

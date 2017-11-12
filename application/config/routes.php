@@ -15,3 +15,7 @@ $route['translate_uri_dashes'] = FALSE;
 // BaseURL + null
 $route['default_controller'] = 'users/home';
 
+// route to form-question
+$route['form-question'] = 'users/form_question';
+
+?>
