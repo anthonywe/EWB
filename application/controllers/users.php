@@ -6,7 +6,8 @@ class Users extends CI_Controller {
 	// register my user
 	public function home()
 	{
-		$this->load->view('users/index');
+		$this->load->view('users/forum-main');
 	}
+
 
 }
