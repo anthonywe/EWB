@@ -19,4 +19,6 @@ $route['default_controller'] = 'users/home';
 $route['form-question'] = 'users/form_question';
 // route to go to engineer profile
 $route['profile-engineer'] = 'users/profile_engineer';
+// route to go to ngo profile
+$route['profile-ngo'] = 'users/profile_ngo';
 ?>

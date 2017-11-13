@@ -19,5 +19,10 @@ class Users extends CI_Controller {
 		$this->load->view('users/profile-engineer');
 	}
 
+	public function profile_ngo()
+	{
+		$this->load->view('users/profile-ngo');
+	}
+
 
 }
