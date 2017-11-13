@@ -101,8 +101,6 @@
 				    </div>
 			  	</div>
 
-	
-
 			 <div class="form-group row">
 			    <div class="col-xs-offset-2 col-xs-4 col-sm-offset-4 col-sm-4">
            		<button type="submit" name="submit" class="button_style btn"> Register </button>
