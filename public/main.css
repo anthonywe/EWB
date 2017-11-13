@@ -51,6 +51,13 @@
 	display: inline-block;
 }
 
+.profile-pic {
+	width: 150px;
+	height: 150px;
+	display: inline-block;
+	border-radius: 50%;
+}
+
 .thread-title {
 	display: inline-block;
 }

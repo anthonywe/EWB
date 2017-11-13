@@ -17,5 +17,6 @@ $route['default_controller'] = 'users/home';
 
 // route to form-question
 $route['form-question'] = 'users/form_question';
-
+// route to go to engineer profile
+$route['profile-engineer'] = 'users/profile_engineer';
 ?>

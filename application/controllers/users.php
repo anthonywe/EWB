@@ -14,5 +14,10 @@ class Users extends CI_Controller {
 		$this->load->view('users/forum-question');
 	}
 
+	public function profile_engineer() 
+	{
+		$this->load->view('users/profile-engineer');
+	}
+
 
 }
