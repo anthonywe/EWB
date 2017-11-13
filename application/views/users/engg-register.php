@@ -18,11 +18,15 @@
   		<!-- <span class="navbar-brand mb-0 h1">Navbar</span> -->
   		<p class="history"> amount of .. and total project </p>
 		</nav>
+
+		<div class="header-img">
+			<img src="<?=base_url(); ?>public/tulips.jpg" alt="image">
+		</div>
 		
 		<div class="container">
 			<div class="header">
 				<div class="row">
-				  <div class="col-xs-offset-2 col-xs-4 col-sm-offset-4 col-sm-2"><h1> Registration Form </h1></div>
+				  <div class="col-xs-offset-2 col-xs-4 col-sm-offset-3 col-sm-6"><h1> Registration Form </h1></div>
 				</div>
 			</div>
 
@@ -86,14 +90,14 @@
 			  	<div class="form-group row">
 				    <label for="inputPic" class="col-sm-offset-2 col-sm-2 col-form-label">Profile Picture</label>
 				    <div class="col-sm-4">
-				     <input type="text" class="form-control" id="inputPic">
+				    <input type="file" name="profilePic" class="form-control" id="inputPic" accept="image/*">
 				    </div>
 			  	</div>
 
 			  	<div class="form-group row">
 				    <label for="inputAbout" class="col-sm-offset-2 col-sm-2 col-form-label">About Me</label>
 				    <div class="col-sm-4">
-				      <textarea rows="5" cols="100"></textarea>>
+				      <textarea rows="5" cols="100"></textarea>
 				    </div>
 			  	</div>
 
@@ -106,6 +110,18 @@
 			 </div>
 			</form>
 
+		</div>
+
+		<div class="footer">
+			 <h3>Contact us </h3>
+				<p> <span>
+				Stichting Ingenieurs zonder Grenzen <br>
+				projects@ewbnl.org <br>
+				CIC Rotterdam, Stationsplein 45, 4th floor <br>
+				3013 AK Rotterdam <br>
+				KvK 65174275 – RSIN 856007638 <br>
+				Read our policy <br>
+				</span></p>
 		</div>
 		
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
