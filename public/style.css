@@ -85,3 +85,7 @@ button:hover{
 	padding-bottom: 10px;
 }
 
+.alert-error{
+	color:rgba(255, 0, 83, 1); 
+	font-weight: bold;
+}

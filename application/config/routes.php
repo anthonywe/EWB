@@ -18,7 +18,7 @@ $route['login'] = 'users/login';
 $route['register'] = 'users/register';
 $route['ngo_register'] = 'users/ngo_register';
 $route['engg_register'] = 'users/engg_register';
-
+$route['ngo_reg'] = 'users/ngo_reg';
 
 
 
