@@ -9,7 +9,6 @@ class Users extends CI_Controller {
 		$this->load->view('users/forum-main');
 	}
 
-<<<<<<< HEAD
 	public function login()
 	{
 		$this->load->view('users/login');
@@ -28,7 +27,6 @@ class Users extends CI_Controller {
 		$this->load->view('users/engg-register');
 	}
 
-=======
 	public function form_question()
 	{
 		$this->load->view('users/forum-question');
@@ -45,5 +43,5 @@ class Users extends CI_Controller {
 	}
 
 
->>>>>>> add1d66799cc958d4a3f4121a209fa46a15e3571
+
 }
