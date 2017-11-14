@@ -28,12 +28,24 @@
 			      <input type="email" class="form-control" id="inputEmail">
 			    </div>
 			  </div>
+
 			  <div class="form-group row">
 			    <label for="inputPassword" class="col-sm-offset-2 col-sm-2 col-form-label">Password</label>
 			    <div class="col-sm-4">
 			      <input type="password" class="form-control" id="inputPassword">
 			    </div>
 			  </div>
+				
+				<div class="form-group row">
+				    <div class="form-check">
+				      <label class="form-check-label" class="col-sm-offset-2 col-sm-2 col-form-label"> 
+				      </label>
+				      <div class="col-sm-offset-4 col-sm-4">
+				        <input class="form-check-input" type="checkbox" class="form-control"> I am not a Robot
+				      </div>
+				    </div>
+				</div>
+
 			  <div class="form-group row">
 			    <div class="col-xs-offset-2 col-xs-4 col-sm-offset-4 col-sm-4">
            		<button type="submit" name="submit" class="button_style btn"> Login </button>
