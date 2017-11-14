@@ -54,7 +54,7 @@
 				<div class="form-group row">
 				    <label for="inputPassword" class="col-sm-offset-2 col-sm-2 col-form-label">Password</label>
 				    <div class="col-sm-4">
-				      <input type="text" class="form-control" name="inputPassword">
+				      <input type="password" class="form-control" name="inputPassword">
 				    </div>
 			  	</div>
 			  
