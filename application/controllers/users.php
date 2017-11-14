@@ -53,7 +53,6 @@ class Users extends CI_Controller {
         		'ctl_linkedin'          => $this->input->post('inputLinkedIn', true),
         		'ctl_profilepic'        => $this->input->post('inputProfilePic', true),
         		'ctl_aboutme'           => $this->input->post('inputAboutMe', true),
-        		'ctl_notrobot'          => $this->input->post('inputNotRobot', true),
         		);
 
 
