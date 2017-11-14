@@ -23,8 +23,6 @@ $route['engg_register'] = 'users/engg_register';
 
 
 
-
-
 // route to form-question
 $route['form-question'] = 'users/form_question';
 // route to go to engineer profile
