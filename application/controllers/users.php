@@ -6,9 +6,10 @@ class Users extends CI_Controller {
 	// register my user
 	public function home()
 	{
-		$this->load->view('users/index');
+		$this->load->view('users/forum-main');
 	}
 
+<<<<<<< HEAD
 	public function login()
 	{
 		$this->load->view('users/login');
@@ -27,4 +28,22 @@ class Users extends CI_Controller {
 		$this->load->view('users/engg-register');
 	}
 
+=======
+	public function form_question()
+	{
+		$this->load->view('users/forum-question');
+	}
+
+	public function profile_engineer() 
+	{
+		$this->load->view('users/profile-engineer');
+	}
+
+	public function profile_ngo()
+	{
+		$this->load->view('users/profile-ngo');
+	}
+
+
+>>>>>>> add1d66799cc958d4a3f4121a209fa46a15e3571
 }
