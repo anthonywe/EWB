@@ -32,52 +32,45 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-4">
-				<div class="row">
-					<div class="col-sm-4 col-md-4">
-						<img class="profile-pic" src="http://localhost/Something/MVC/EWB/public/test-pic.jpg" alt="profile-pic-thumbnail" class="img-thumbnail">
+			<div class="col-md-offset-2 col-md-8 justify-content-md-center">
+				<form>
+					<div class="row">
+						<div class="col-sm-4 col-md-4">
+							<img class="profile-pic" src="http://localhost/Something/MVC/EWB/public/test-pic.jpg" alt="profile-pic-thumbnail" class="img-thumbnail">
+						</div>
 					</div>
-				</div>
-			</div>
-
-			<div "col-4">	
-				<div class="form-group row">
-					<label for="inputPic" class="col-sm-offset-4 col-sm-6 col-form-label">Name: </label>
-					<div class="col-sm-4">
-						<input type="text" name="name" class="form-control" style="width:200px;" id="inputPic" accept="image/*">
-					</div>
-				</div>
-
-				<div class="form-group row">
-					<label for="inputPic" class="col-sm-offset-4 col-sm-6 col-form-label">Email: </label>
-					<div class="col-sm-4">
-						<input type="text" name="email" class="form-control" style="width:200px;" id="inputPic" accept="image/*">
-					</div>
-				</div>
-				<div class="form-group row">
-					<label for="inputPic" class="col-sm-offset-4 col-sm-6 col-form-label">Fields of Expertise</label>
-					<div class="col-sm-4">
-						<input type="text" name="fields-of-expertise" class="form-control" style="width:200px;" id="inputPic" accept="image/*">
-					</div>
-				</div>
-				<div class="form-group row">
-					<label for="inputPic" class="col-sm-offset-4 col-sm-6 col-form-label">Phone Number:</label>
-					<div class="col-sm-4">
-						<input type="text" name="phone-number" class="form-control" style="width:200px;" id="inputPic" accept="image/*">
-					</div>
-				</div>
 					<div class="form-group row">
-					<label for="inputPic" class="col-sm-offset-4 col-sm-6 col-form-label">LinkedIn Profile</label>
-					<div class="col-sm-4">
-						<input type="text" name="linkedin-profile" class="form-control" style="width:200px;" id="inputPic" accept="image/*">
+						<label for="inputPic" class="col-sm-offset-4 col-sm-6 col-form-label">Name: </label>
+						<div class="col-sm-4">
+							<input type="text" name="name" class="form-control" style="width:200px;" id="inputPic" accept="image/*">
+						</div>
 					</div>
-				</div>
+
 					<div class="form-group row">
-					<label for="inputPic" class="col-sm-offset-4 col-sm-6 col-form-label">About Me:</label>
-					<div class="col-sm-4">
-						<input type="text" name="about-me" class="form-control" style="width:200px;" id="inputPic" accept="image/*">
+						<label for="inputPic" class="col-sm-offset-4 col-sm-6 col-form-label">Email: </label>
+						<div class="col-sm-4">
+							<input type="text" name="email" class="form-control" style="width:200px;" id="inputPic" accept="image/*">
+						</div>
 					</div>
-				</div>
+					<div class="form-group row">
+						<label for="inputPic" class="col-sm-offset-4 col-sm-6 col-form-label">Phone Number:</label>
+						<div class="col-sm-4">
+							<input type="text" name="contact-person" class="form-control" style="width:200px;" id="inputPic" accept="image/*">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="inputPic" class="col-sm-offset-4 col-sm-6 col-form-label">Fields of Expertise: </label>
+						<div class="col-sm-4">
+							<input type="text" name="phone-number" class="form-control" style="width:200px;" id="inputPic" accept="image/*">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="inputPic" class="col-sm-offset-4 col-sm-6 col-form-label">LinkedIn Profile: </label>
+						<div class="col-sm-4">
+							<input type="text" name="linkedin-profile" class="form-control" style="width:200px;" id="inputPic" accept="image/*">
+						</div>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>
@@ -86,6 +79,5 @@
 
 
 
-		</body>
-
-		</html>
+</body>
+</html>

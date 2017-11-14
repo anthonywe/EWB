@@ -15,7 +15,7 @@
 	</nav>
 	<div class="container ">
 		<div class="row">
-			<div class="col-2 side-bar bd-sidebar">
+			<div class="col-md-2 side-bar bd-sidebar">
 				<div class="col-2">
 					<a href="">Answers#</a><br>
 					<p>Contacts</p>
@@ -32,15 +32,15 @@
 					</div>
 				</div>
 			</div>
-			<form>
-			<div class="col-4 justify-content-md-center">
-				<div class="row">
-					<div class="col-sm-4 col-md-4">
-						<img class="profile-pic" src="http://localhost/Something/MVC/EWB/public/test-pic.jpg" alt="profile-pic-thumbnail" class="img-thumbnail">
+			
+			<div class="col-md-offset-2 col-md-8 justify-content-md-center">
+				<form>
+					<div class="row">
+						<div class="col-sm-4 col-md-4">
+							<img class="profile-pic" src="http://localhost/Something/MVC/EWB/public/test-pic.jpg" alt="profile-pic-thumbnail" class="img-thumbnail">
+						</div>
 					</div>
-				</div>
-			</div>
-				<div "col-4">	
+					<!-- <div "col-4">	 -->
 					<div class="form-group row">
 						<label for="inputPic" class="col-sm-offset-4 col-sm-6 col-form-label">Name: </label>
 						<div class="col-sm-4">
@@ -72,8 +72,9 @@
 							<input type="text" name="linkedin-profile" class="form-control" style="width:200px;" id="inputPic" accept="image/*">
 						</div>
 					</div>
-				</div>
-			</form>
+				</form>
+			</div>
+
 		</div>
 	</div>
 
