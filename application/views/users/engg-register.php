@@ -29,75 +29,88 @@
 				  <div class="col-xs-offset-2 col-xs-4 col-sm-offset-3 col-sm-6"><h1> Registration Form </h1></div>
 				</div>
 			</div>
+			<div class="row">
+				<div class="col-xs-offset-2 col-xs-4 col-sm-offset-4 col-sm-6">
+			<?php
+                    $err = validation_errors('<li>', '</li>');
+                    if( $err ) {
+                ?>
+                    <ul class="alert-error">
+                    <?php echo $err; ?>
+                    </ul>
+                <?php } ?>
+            	</div>
+        	</div>
 
-			<form>
+
+			<form method="post" action="<?= base_url(); ?>engg_register">
 			  <div class="form-group row">
 			    <label for="inputUserName" class="col-sm-offset-2 col-sm-2 col-form-label">User Name</label>
 			    <div class="col-sm-4">
-			      <input type="text" class="form-control" id="inputUserName">
+			      <input type="text" class="form-control" name="inputUserName">
 			    </div>
 			  </div>
 			
 				<div class="form-group row">
 				    <label for="inputPassword" class="col-sm-offset-2 col-sm-2 col-form-label">Password</label>
 				    <div class="col-sm-4">
-				      <input type="text" class="form-control" id="inputPassword">
+				      <input type="text" class="form-control" name="inputPassword">
 				    </div>
 			  	</div>
 			  
 			    <div class="form-group row">
 				    <label for="inputCPassword" class="col-sm-offset-2 col-sm-2 col-form-label">Confirm Password</label>
 				    <div class="col-sm-4">
-				      <input type="password" class="form-control" id="inputCPassword">
+				      <input type="password" class="form-control" name="inputCPassword">
 				    </div>
 			  	</div>
 
 			  	<div class="form-group row">
 				    <label for="inputName" class="col-sm-offset-2 col-sm-2 col-form-label">Name</label>
 				    <div class="col-sm-4">
-				      <input type="text" class="form-control" id="inputName">
+				      <input type="text" class="form-control" name="inputName">
 				    </div>
 			  	</div>
 
 				<div class="form-group row">
 				    <label for="inputEmail" class="col-sm-offset-2 col-sm-2 col-form-label">Email</label>
 				    <div class="col-sm-4">
-				      <input type="text" class="form-control" id="inputEmail">
+				      <input type="text" class="form-control" name="inputEmail">
 				    </div>
 			  	</div>
 
 			  	<div class="form-group row">
 				    <label for="inputExpertise" class="col-sm-offset-2 col-sm-2 col-form-label">Field of Expertise</label>
 				    <div class="col-sm-4">
-				      <input type="text" class="form-control" id="inputExpertise">
+				      <input type="text" class="form-control" name="inputExpertise">
 				    </div>
 			  	</div>
 
 			  	<div class="form-group row">
 				    <label for="inputPhone" class="col-sm-offset-2 col-sm-2 col-form-label">Phone Number</label>
 				    <div class="col-sm-4">
-				      <input type="text" class="form-control" id="inputPhone">
+				      <input type="text" class="form-control" name="inputPhone">
 				    </div>
 			  	</div>
 
 			  	<div class="form-group row">
 				    <label for="inputLinkedin" class="col-sm-offset-2 col-sm-2 col-form-label">Linkedin Profile URL</label>
 				    <div class="col-sm-4">
-				      <input type="text" class="form-control" id="inputWebsite">
+				      <input type="text" class="form-control" name="inputLinkedIn">
 				    </div>
 			  	</div>
 
 			  	<div class="form-group row">
 				    <label for="inputPic" class="col-sm-offset-2 col-sm-2 col-form-label">Profile Picture</label>
 				    <div class="col-sm-4">
-				    <input type="file" name="profilePic" class="form-control" id="inputPic" accept="image/*">
+				    <input type="file" name="inputProfilePic" class="form-control" id="inputPic" accept="image/*">
 				    </div>
 			  	</div>
 
 			  	<div class="form-group row">
 				    <label for="inputAbout" class="col-sm-offset-2 col-sm-2 col-form-label">About Me</label>
 				    <div class="col-sm-4">
-				      <textarea rows="5" cols="100"></textarea>
+				      <textarea name="inputAboutMe" rows="5" cols="100"></textarea>
 				    </div>
 			  	</div>
 
@@ -106,7 +119,7 @@
 				      <label class="form-check-label" class="col-sm-offset-2 col-sm-2 col-form-label"> 
 				      </label>
 				      <div class="col-sm-offset-4 col-sm-4">
-				        <input class="form-check-input" type="checkbox" class="form-control"> I am not a Robot
+				        <input class="form-check-input" type="checkbox" name="inputNotRobot" class="form-control"> I am not a Robot
 				      </div>
 				    </div>
 				</div>
