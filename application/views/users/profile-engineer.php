@@ -19,7 +19,7 @@
 				<div class="col-2">
 					<a href="">Answers#</a><br>
 					<p>Contacts</p>
-					<a class="btn btn-primary" href="#" role="button">Add Project</a>
+					<!-- <a class="btn btn-primary" href="#" role="button">Add Project</a> -->
 					<div class="row">
 						<div class=" offset-lg-3">
 							<div class="input-group search-div">
