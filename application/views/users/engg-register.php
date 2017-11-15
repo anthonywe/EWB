@@ -43,13 +43,17 @@
         	</div>
 
 
-			<form method="post" action="<?= base_url(); ?>engg_register">
+			<form method="post" action="<?= base_url(); ?>engg_register" enctype="multipart/form-data">
 			  <div class="form-group row">
 			    <label for="inputUserName" class="col-sm-offset-2 col-sm-2 col-form-label">User Name</label>
 			    <div class="col-sm-4">
 			      <input type="text" class="form-control" name="inputUserName">
 			    </div>
 			  </div>
+			  
+			  
+			  <input type="hidden" name="ngo_eng" value="1">
+			  
 			
 				<div class="form-group row">
 				    <label for="inputPassword" class="col-sm-offset-2 col-sm-2 col-form-label">Password</label>

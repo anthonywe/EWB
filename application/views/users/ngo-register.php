@@ -20,7 +20,7 @@
 
 		<nav class="navbar sticky-top nave-barC">
   		<!-- <span class="navbar-brand mb-0 h1">Navbar</span> -->
-  		<p class="history"> amount of .. and total project </p>
+  		<p class="history">amount of .. and total project </p>
 		</nav>
 		
 		<div class="header-img">
@@ -60,7 +60,7 @@
 			</div>
 
 
-			<form method="post" action="<?=base_url(); ?>ngo_register">
+			<form method="post" action="<?=base_url(); ?>ngo_register " enctype="multipart/form-data">
 			  <div class="form-group row">
 			    <label for="inputUserName" class="col-sm-offset-2 col-sm-2 col-form-label">User Name</label>
 			    <div class="col-sm-4">
@@ -120,7 +120,7 @@
 			  	<div class="form-group row">
 				    <label for="inputPic" class="col-sm-offset-2 col-sm-2 col-form-label">Profile Picture</label>
 				    <div class="col-sm-4">
-				    <input type="file" name="profilePic" class="form-control" name="inputPic" accept="image/*">
+				    	<input type="file" class="form-control" name="inputPic" accept="image/*">
 				    </div>
 			  	</div>
 
