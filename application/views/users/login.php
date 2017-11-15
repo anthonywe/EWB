@@ -20,19 +20,46 @@
 				  <div class="col-xs-offset-2 col-xs-4 col-sm-offset-4 col-sm-2"><h1> Login</h1></div>
 				</div>
 			</div>
+	
+			<div class="row">
+				<div class="col-xs-offset-2 col-xs-4 col-sm-offset-4 col-sm-6">
 
-			<form>
+			<!-- success message from registration process
+ -->			 <?php if( isset($err_msg) ){ ?>
+                <div class="alert-error"><?= $err_msg; ?>
+                </div>
+                <?php } ?> 
+                </div>
+            </div>
+
+			<div class="row">
+				<div class="col-xs-offset-2 col-xs-4 col-sm-offset-4 col-sm-6">
+			<!-- validation errror message from form
+ -->
+					<?php
+						$err = validation_errors('<li>', '</li>');
+						if ( $err ) {
+						?>
+							<ul class="alert-error"> 
+							<?php echo $err; ?>
+							</ul>
+					<?php } ?>	
+				</div>
+			</div>
+
+			<form method="post" action="<?=base_url(); ?>login">
+
 			  <div class="form-group row">
-			    <label for="inputEmail" class="col-sm-offset-2 col-sm-2 col-form-label">Email</label>
+			    <label for="inputUserName" class="col-sm-offset-2 col-sm-2 col-form-label">User Name</label>
 			    <div class="col-sm-4">
-			      <input type="email" class="form-control" id="inputEmail">
+			      <input type="text" class="form-control" name="inputUserName">
 			    </div>
 			  </div>
 
 			  <div class="form-group row">
 			    <label for="inputPassword" class="col-sm-offset-2 col-sm-2 col-form-label">Password</label>
 			    <div class="col-sm-4">
-			      <input type="password" class="form-control" id="inputPassword">
+			      <input type="password" class="form-control" name="inputPassword">
 			    </div>
 			  </div>
 				
@@ -41,7 +68,7 @@
 				      <label class="form-check-label" class="col-sm-offset-2 col-sm-2 col-form-label"> 
 				      </label>
 				      <div class="col-sm-offset-4 col-sm-4">
-				        <input class="form-check-input" type="checkbox" class="form-control"> I am not a Robot
+				        <input class="form-check-input" type="checkbox" class="form-control" name="robotCheck"> I am not a Robot
 				      </div>
 				    </div>
 				</div>
@@ -49,7 +76,7 @@
 			  <div class="form-group row">
 			    <div class="col-xs-offset-2 col-xs-4 col-sm-offset-4 col-sm-4">
            		<button type="submit" name="submit" class="button_style btn"> Login </button>
-          </div>
+          		</div>
 			  </div>
 			</form>
 

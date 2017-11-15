@@ -33,7 +33,15 @@ class User extends CI_Model
 
    }
 
+    public function checkLoginByUsernameAndPass( $username, $passwd )
+    {
+        return $this->db->query(
+            "SELECT * FROM login WHERE username= ? AND password = ? AND approved = 1" ,
+            array($username, $passwd)
+            )->row_array();        
+    }
 
+<<<<<<< HEAD
    public function addEngineer($item)
    {
        $query = "INSERT INTO users (name, email, field_of_expertise, phone, profile_pic, linkedin_url, about_me, ngo_engg) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
@@ -59,6 +67,9 @@ class User extends CI_Model
        $this->db->query($query, $values);
 
    }
+=======
+}
+>>>>>>> my_branch
 
 
 
