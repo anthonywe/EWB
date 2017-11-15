@@ -56,7 +56,7 @@
 			</div>
 
 
-			<form method="post" action="<?=base_url(); ?>ngo_register">
+			<form method="post" action="<?=base_url(); ?>ngo_register ">
 			  <div class="form-group row">
 			    <label for="inputUserName" class="col-sm-offset-2 col-sm-2 col-form-label">User Name</label>
 			    <div class="col-sm-4">
