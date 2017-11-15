@@ -48,6 +48,15 @@ class User extends CI_Model
             $item['ctl_ngo_eng']
             );
         $this->db->query($query, $values);
+        $last_id=$this->db->insert_id();
+
+        $query = "INSERT INTO login (username, password, users_id) VALUES ( ?, ?, ?)";
+        $values = array(
+            $item['ctl_username'],
+            $item['ctl_password'],
+            $last_id
+            );
+        $this->db->query($query, $values);
 
     }
 

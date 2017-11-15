@@ -51,9 +51,9 @@
 			    </div>
 			  </div>
 			  
-			  <div class="form_group">
-			  	<input type="hidden" name="ngo_eng" value="1">
-			  </div>
+			  
+			  <input type="hidden" name="ngo_eng" value="1">
+			  
 			
 				<div class="form-group row">
 				    <label for="inputPassword" class="col-sm-offset-2 col-sm-2 col-form-label">Password</label>
