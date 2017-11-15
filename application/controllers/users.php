@@ -1,48 +1,58 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 class Users extends CI_Controller {
-    // register my user
-    public function home()
-    {
-        $this->load->view('users/forum-main');
-    }
-    public function login()
-    {
-        $this->load->view('users/login');
-    }
-    public function register()
-    {
-        $this->load->view('users/register');
-    }
-    public function ngo_reg()
-    {
-        $data = array(
-            'suc_msg' => $this->session->flashdata('success')
-            );
-        $this->load->view('users/ngo-register', $data);
-    }
-    public function ngo_register()
-    {
-        $config['upload_path']          = './public/';
-        $config['allowed_types']        = 'gif|jpg|png';
-        $config['max_size']             = 100;
-        $config['max_width']            = 1024;
-        $config['max_height']           = 768;
-        $this->load->library('upload', $config);
-        if ( ! $this->upload->do_upload('inputPic'))
-        {
-            $error = array('error' => $this->upload->display_errors());
-            $this->load->view('users/ngo-register', $error);
-        }
-        else
-        {   
-            // picture upload
-            $random_digit=rand(0000,9999);
-            $image_name = $_FILES["inputPic"] ["name"];
-            $new_file_name=$random_digit.$image_name;
-            $folder = "./public/".$new_file_name;
-                // echo "registration process";
-        $this->form_validation->set_rules('inputUserName',    'Your User Name', 'required|is_unique[login.username]');
+
+	// register my user
+	public function home()
+	{
+		$this->load->view('users/forum-main');
+	}
+
+	public function login()
+	{
+		$this->load->view('users/login');
+	}
+	public function register()
+	{
+		$this->load->view('users/register');
+	}
+
+	public function ngo_reg()
+	{
+		$data = array(
+			'suc_msg' => $this->session->flashdata('success')
+			);
+		$this->load->view('users/ngo-register', $data);
+	}
+
+	public function ngo_register()
+	{
+		$config['upload_path']          = './public/';
+		$config['allowed_types']        = 'gif|jpg|png';
+		$config['max_size']             = 100;
+		$config['max_width']            = 1024;
+		$config['max_height']           = 768;
+
+		$this->load->library('upload', $config);
+
+		if ( ! $this->upload->do_upload('inputPic'))
+		{
+			$error = array('error' => $this->upload->display_errors());
+
+			$this->load->view('users/ngo-register', $error);
+		}
+		else
+		{	
+			// picture upload
+			$random_digit=rand(0000,9999);
+			$image_name = $_FILES["inputPic"] ["name"];
+			$new_file_name=$random_digit.$image_name;
+			$folder = "./public/".$new_file_name;
+
+
+				// echo "registration process";
+		$this->form_validation->set_rules('inputUserName',    'Your User Name', 'required|is_unique[login.username]');
+
         $this->form_validation->set_rules('inputPassword',      'Password', 'required|min_length[8]');
         $this->form_validation->set_rules('inputCPassword',      'Confirm Password', 'required|min_length[8]|matches[inputPassword]');
         $this->form_validation->set_rules('inputName',    'Your Name', 'required|alpha_numeric_spaces');
@@ -53,6 +63,7 @@ class Users extends CI_Controller {
           $this->form_validation->set_rules('inputEmail',       'Email', 'required|valid_email');
           $this->form_validation->set_rules('robotCheck',       'I am not a Robot check', 'required');
           if ($this->form_validation->run() == FALSE)
+
             {
                 $this->load->view('users/ngo-register');
             }
@@ -148,4 +159,6 @@ class Users extends CI_Controller {
     {
         $this->load->view('users/profile-ngo');
     }
+
+
 }
