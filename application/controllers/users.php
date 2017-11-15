@@ -11,7 +11,46 @@ class Users extends CI_Controller {
 
 	public function login()
 	{
-		$this->load->view('users/login');
+
+		$this->form_validation->set_rules('inputUserName',    'User Name', 'required');
+		$this->form_validation->set_rules('inputPassword',   'Password', 'required|min_length[8]');
+		$this->form_validation->set_rules('robotCheck',       'I am not a Robot check', 'required');
+		
+        if ($this->form_validation->run() == FALSE)
+        {
+			$this->load->view('users/login');
+        }
+        else{
+
+        	$username = $this->input->post('inputUserName', true);
+        	$password = $this->input->post('inputPassword', true);
+
+
+        	// load database/model to use the data
+        	$this->load->model('User');
+        	$result = $this->User->checkLoginByUsernameAndPass( 
+        		$username, $password);
+
+        	
+
+        	if($result) {
+        		$this->session->set_userdata('currentUser', $result);
+        		redirect(base_url('form-question'));
+        		// echo 'I found this user:' . $result['name'];
+        		
+        	} else {
+
+        		//var_dump($result);die();
+        		$this->session->set_flashdata('error_msg', 'User is not found.');
+        		//var_dump($error_msg);die();
+
+				$data = array(
+					'err_msg' => $this->session->flashdata('error_msg')
+					);
+				$this->load->view('users/login', $data);
+	        		//redirect(base_url(login));
+        	}
+        }	
 	}
 	public function register()
 	{
@@ -112,7 +151,30 @@ class Users extends CI_Controller {
 
 	public function form_question()
 	{
-		$this->load->view('users/forum-question');
+		// if( !$this->session->userdata('currentUser') )
+		// {
+		// 	redirect(base_url());
+		// 	exit();
+		// }
+
+		// $this->load->model('post');
+		// $result = $this->post->listOfAll();
+		// $data = array(
+		// 	'cUser' => $this->session->userdata('currentUser'),
+		// 	'listOfAllUsersToView' => $result,
+		// 		'title' => 'List of my Users'
+		// 	);
+		// // $data = array(
+		// // 		'listOfAllUsersToView' => $result,
+		// // 		'title' => 'List of my Users'
+		// // 	);
+
+		// $this->load->view('users/timeline', $data);
+	
+	$this->load->view('users/forum-question');
+
+
+		
 	}
 
 	public function profile_engineer() 

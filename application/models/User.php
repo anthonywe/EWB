@@ -33,6 +33,14 @@ class User extends CI_Model
 
     }
 
+    public function checkLoginByUsernameAndPass( $username, $passwd )
+    {
+        return $this->db->query(
+            "SELECT * FROM login WHERE username= ? AND password = ? AND approved = 1" ,
+            array($username, $passwd)
+            )->row_array();        
+    }
+
 
     // public function addNGOtoLogin( $item )
     // {
@@ -48,14 +56,7 @@ class User extends CI_Model
     //     $this->db->query($query, $values);
     // }
 
-    // public function checkLoginByEmailAndPass( $email, $passwd )
-    // {
-    //     return $this->db->query(
-    //         "SELECT * FROM users WHERE email= ? AND password = ?",
-    //         array($email, $passwd)
-    //         )->row_array();        
-    // }
-
+    
     // public function listOfAll()
     // {
     //     return $this->db->query("SELECT * FROM users")->result_array();     

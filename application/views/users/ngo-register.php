@@ -120,7 +120,7 @@
 			  	<div class="form-group row">
 				    <label for="inputPic" class="col-sm-offset-2 col-sm-2 col-form-label">Profile Picture</label>
 				    <div class="col-sm-4">
-				    <input type="file" name="profilePic" class="form-control" name="inputPic" accept="image/*">
+				    <input type="file" class="form-control" name="inputPic" accept="image/*">
 				    </div>
 			  	</div>
 
