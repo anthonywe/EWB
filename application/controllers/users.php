@@ -29,7 +29,7 @@ class Users extends CI_Controller {
 	public function ngo_register()
 	{
 				// echo "registration process";
-		$this->form_validation->set_rules('inputUserName',    'Your User Name', 'required');
+		$this->form_validation->set_rules('inputUserName',    'Your User Name', 'required|is_unique[login.username]');
         $this->form_validation->set_rules('inputPassword',      'Password', 'required|min_length[8]');
         $this->form_validation->set_rules('inputCPassword',      'Confirm Password', 'required|min_length[8]|matches[inputPassword]');
         $this->form_validation->set_rules('inputName',    'Your Name', 'required|alpha_numeric_spaces');
@@ -57,9 +57,13 @@ class Users extends CI_Controller {
 					'ctl_website'   	  => $this->input->post('inputWebsite',true),
 					'ctl_email'       => $this->input->post('inputEmail',true),
 					'ctl_pic'       => $this->input->post('inputPic',true),
+					'ctl_ngo_engg'       => $this->input->post('inputNgoEngg',true),
 				);
 				$this->session->set_flashdata('success', 'Registration successfully done. Thanks');
-				$this->User->addNGO( $data );
+				$last_id = $this->User->addNGOUser( $data );
+				//var_dump($last_id); die();
+				//var_dump($last_id);
+				//$this->User->addNGOtoLogin( $data );
 				redirect(base_url('ngo_reg'));
 			}
 		

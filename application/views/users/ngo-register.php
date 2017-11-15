@@ -14,6 +14,10 @@
 
 	<body>
 
+		<?php
+			$NGOfield = 0;
+		?>	
+
 		<nav class="navbar sticky-top nave-barC">
   		<!-- <span class="navbar-brand mb-0 h1">Navbar</span> -->
   		<p class="history"> amount of .. and total project </p>
@@ -129,6 +133,9 @@
 				      </div>
 				    </div>
 				</div>
+
+				<input type="hidden" name="inputNgoEngg" value="<?= 
+				 $NGOfield;  ?>">
 
 			 <div class="form-group row">
 			    <div class="col-xs-offset-2 col-xs-4 col-sm-offset-4 col-sm-4">
