@@ -33,7 +33,7 @@
 				</div>
 			</div>
 			<div class="col-md-offset-2 col-md-8 justify-content-md-center">
-				<form>
+				<form method="post" action="<?= base_url();?>update_engprofile">
 					<div class="row">
 						<div class="col-sm-4 col-md-4">
 							<img class="profile-pic" src="http://localhost/Something/MVC/EWB/public/test-pic.jpg" alt="profile-pic-thumbnail" class="img-thumbnail">
@@ -42,33 +42,43 @@
 					<div class="form-group row">
 						<label for="inputPic" class="col-sm-offset-4 col-sm-6 col-form-label">Name: </label>
 						<div class="col-sm-4">
-							<input type="text" name="name" class="form-control" style="width:200px;" id="inputPic" accept="image/*">
+							<input type="text" name="name" value="<?= $details['name']; ?>" class="form-control" style="width:200px;" id="inputPic" accept="image/*">
 						</div>
 					</div>
 
 					<div class="form-group row">
 						<label for="inputPic" class="col-sm-offset-4 col-sm-6 col-form-label">Email: </label>
 						<div class="col-sm-4">
-							<input type="text" name="email" class="form-control" style="width:200px;" id="inputPic" accept="image/*">
+							<input type="text" name="email" value="<?= $details['email']; ?>" class="form-control" style="width:200px;" id="inputPic" accept="image/*">
 						</div>
 					</div>
 					<div class="form-group row">
 						<label for="inputPic" class="col-sm-offset-4 col-sm-6 col-form-label">Phone Number:</label>
 						<div class="col-sm-4">
-							<input type="text" name="contact-person" class="form-control" style="width:200px;" id="inputPic" accept="image/*">
+							<input type="text" name="phone" value="<?= $details['phone']; ?>" class="form-control" style="width:200px;" id="inputPic" accept="image/*">
 						</div>
 					</div>
 					<div class="form-group row">
 						<label for="inputPic" class="col-sm-offset-4 col-sm-6 col-form-label">Fields of Expertise: </label>
 						<div class="col-sm-4">
-							<input type="text" name="phone-number" class="form-control" style="width:200px;" id="inputPic" accept="image/*">
+							<input type="text" name="expertise" value="<?= $details['field_of_expertise']; ?>" class="form-control" style="width:200px;" id="inputPic" accept="image/*">
 						</div>
 					</div>
 					<div class="form-group row">
 						<label for="inputPic" class="col-sm-offset-4 col-sm-6 col-form-label">LinkedIn Profile: </label>
 						<div class="col-sm-4">
-							<input type="text" name="linkedin-profile" class="form-control" style="width:200px;" id="inputPic" accept="image/*">
+							<input type="text" name="linkedin-profile" value="<?= $details['linkedin_url']; ?>" class="form-control" style="width:200px;" id="inputPic" accept="image/*">
 						</div>
+					</div>
+					<div class="form-group row">
+						<label for="inputPic" class="col-sm-offset-4 col-sm-6 col-form-label">About Me: </label>
+						<div class="col-sm-4">
+							<input type="text" name="about-me" value="<?= $details['about_me']; ?>" class="form-control" style="width:200px;" id="inputPic" accept="image/*">
+						</div>
+					</div>
+					<div class="form-group row">
+						<input type="hidden" name="userid" value="<?= $details['id']; ?> ">
+						<input type="submit" value="update">
 					</div>
 				</form>
 			</div>

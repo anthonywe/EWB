@@ -29,6 +29,12 @@
 								</span>
 							</div>
 						</div>
+						<div>
+							<form method="post" action="<?= base_url();?>profile-ngo">
+								<input type="hidden" name="userid" value="<?= $cUser['users_id']; ?>">
+								<input type="submit" value="profile">
+							</form>
+						</div>
 					</div>
 				</div>
 			</div>

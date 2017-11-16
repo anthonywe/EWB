@@ -29,4 +29,8 @@ $route['form-question'] = 'users/form_question';
 $route['profile-engineer'] = 'users/profile_engineer';
 // route to go to ngo profile
 $route['profile-ngo'] = 'users/profile_ngo';
+// update profile details ngo
+$route['update_ngoprofile'] = 'users/updateUserInfoNgo';
+// update profile details engg
+$route['update_engprofile'] = 'users/updateUserInfoEngg';
 ?>

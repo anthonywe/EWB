@@ -68,9 +68,69 @@ class User extends CI_Model
 
    }
 
+   public function oneUser($id)
+   {
+         $query = "SELECT * FROM users WHERE id=?";
+    return $this->db->query($query, $id)->row_array();
+
+
+
+   }
+
+   public function updateUserNgo($data)
+   {
+      $array = array(
+        'name' => $data['ctl_name'],
+        'email' => $data['ctl_email'],
+        'contact_person' => $data['ctl_contact_person'],
+        'field_of_activities' => $data['ctl_field_activities'],
+        'website' => $data['ctl_website']
+        );
+      // var_dump($array); die();
+
+      $this->db->where('id', $data['ctl_usersid']);
+      $this->db->update('users', $array);
+    }
+
+    public function updateUserEng($data)
+    {
+      $array = array(
+        'name'                => $data['ctl_name'],
+        'email'               => $data['ctl_email'],
+        'phone'               => $data['ctl_phone'],
+        'field_of_expertise'  => $data['ctl_expertise'],
+        'linkedin_url'        => $data['ctl_linkedin'],
+        'about_me'            => $data['ctl_aboutme']
+        );
+
+      $this->db->where('id', $data['ctl_userid']);
+      $this->db->update('users', $array);
+    }
+
+
+
+   public function holdInfo()
+   {
+
+    $query ="UPDATE users SET (name, email, contact_person, field_of_activities,
+                website) VALUES (?, ?, ?, ?, ?)";
+      $values = array($data['ctl_name'], $data['ctl_email'],
+                      $data['ctl_contact_person'], $data['ctl_field_activities'], $data['ctl_website']);
+      return $this->db->query($query, $values);
+
+
+
+       $this->db->set('name', $data['ctl_name']);
+      $this->db->set('email', $data['ctl_email']);
+      $this->db->set('contact_person', $data['ctl_contact_person']);
+      $this->db->set('field_of_activities', $data['ctl_field_activities']);
+      $this->db->set('website', $data['ctl_website']);
+      $this->db->where('id', $data['ctl_userid']);
+      $this->db->update('users');
+   }
+
+
+
 }
 
 
-
-
-}

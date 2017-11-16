@@ -209,8 +209,13 @@ class Users extends CI_Controller {
 		// // 	);
 
 		// $this->load->view('users/timeline', $data);
+
+	$data = array(
+		'cUser' => $this->session->userdata('currentUser'),
+		);
+
 	
-	$this->load->view('users/forum-question');
+	$this->load->view('users/forum-question', $data);
 
 
 		
@@ -218,12 +223,119 @@ class Users extends CI_Controller {
 
 	public function profile_engineer() 
 	{
-		$this->load->view('users/profile-engineer');
+		$this->load->model('User');
+		$current_user = $this->session->userdata('currentUser');
+		$id = $current_user['users_id'];
+
+		$result = $this->User->oneUser($id);
+
+		$data = array(
+			'cUser'   => $current_user,
+			'details'  => $result
+			);
+
+		$this->load->view('users/profile-engineer', $data);
 	}
 
 	public function profile_ngo()
+	{	//load model
+		$this->load->model('User');
+		//fetch current user id when this user click on "view profile"
+		$current_user = $this->session->userdata('currentUser');
+		$id = $current_user['users_id'];
+		// $data = array(
+		// 	'ctl_this_userid'  => $this->input->post('userid', true),
+		// 	);
+
+		//pass current user id to model function to fetch details of this user
+		$result = $this->User->oneUser($id);
+
+		//var_dump($result); die();
+		$data = array(
+			'cUser'    => $this->session->userdata('currentUser'),
+			'details'  => $result,
+			);
+
+		$this->load->view('users/profile-ngo', $data);
+	}
+
+	public function updateUserInfoNgo()
 	{
-		$this->load->view('users/profile-ngo');
+		$this->load->model('User');
+
+		$current_user = $this->session->userdata('currectUser');
+		$id = $current_user['users_id'];
+		$result = $this->User->oneUser($id);
+
+
+		$this->form_validation->set_rules('name', 'Name', 'required');
+		$this->form_validation->set_rules('email', 'Email', 'required');
+		$this->form_validation->set_rules('contact-person', 'Contact Person', 'required');
+		$this->form_validation->set_rules('field-of-activities', 'Field of Activities', 'required');
+		$this->form_validation->set_rules('website', 'Website', 'required');
+
+		if($this->form_validation->run() == FALSE)
+		{
+			echo 'oops';
+			//$this->load->view('users/profile-ngo');
+		}
+		else
+		{
+			//$this->load->model('User');
+
+			$data = array(
+				'ctl_name'   			 => $this->input->post('name', true),
+				'ctl_email'  			 => $this->input->post('email', true),
+				'ctl_contact_person'	 => $this->input->post('contact-person', true),
+				'ctl_field_activities'   => $this->input->post('field-of-activities', true),
+				'ctl_website'  	         => $this->input->post('website', true),
+				'ctl_usersid'            => $this->input->post('userid', true)
+				);
+			//var_dump($data['ctl_name']); die();
+			$result = $this->User->updateUserNgo($data);
+
+			redirect(base_url('/'));
+		}
+	}
+
+	public function updateUserInfoEngg()
+	{
+		$this->load->model('User');
+
+		$current_user = $this->session->userdata('currectUser');
+		$id = $current_user['users_id'];
+		$result = $this->User->oneUser($id);
+
+		$this->form_validation->set_rules('name', 'Name', 'required');
+		$this->form_validation->set_rules('email', 'Email', 'required');
+		$this->form_validation->set_rules('phone', 'Phone Number', 'required');
+		$this->form_validation->set_rules('expertise', 'Field of Expertise', 'required');
+		$this->form_validation->set_rules('linkedin-profile', 'LinkedIn Profile', 'required');
+		$this->form_validation->set_rules('about-me', 'About Me', 'required');
+
+		if ($this->form_validation->run() == FALSE)
+		{
+			echo 'oops';
+		}
+		else
+		{
+			$data = array(
+				'ctl_name'      => $this->input->post('name', true),
+				'ctl_email'     => $this->input->post('email', true),
+				'ctl_phone'     => $this->input->post('phone', true),
+				'ctl_expertise' => $this->input->post('expertise', true),
+				'ctl_linkedin'  => $this->input->post('linkedin-profile', true),
+				'ctl_aboutme'   => $this->input->post('about-me', true),
+				'ctl_userid'    => $this->input->post('userid', true)
+				);
+
+			$result = $this->User->updateUserEng($data);
+
+			redirect(base_url('/'));
+		}
+
+
+
 	}
 
 }
