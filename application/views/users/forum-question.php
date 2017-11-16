@@ -33,57 +33,85 @@
 				</div>
 			</div>
 			<div class="col-10 project-view ">
-				<div>
-					<div class="thread-img">
-						<img class="thread-profile-img" src="http://localhost/Something/MVC/EWB/public/test-pic.jpg" alt="profile-pic-thumbnail" class="img-thumbnail">
-					</div>
-					<h5 class="thread-title">Topic name</h5><br>
-					<p class="project-text"> What all those different measuring units mean can 
-						be a bit confusing, which is why many developers stick to the known, pixel 
-						height. That said, what EMs, percentages, and straight numbers have going 
-						for them is that they are all relative measurements, which can be super 
-						useful when your site needs to look great across a variety of browsers
-						and devices.
-					</p>
-					<div class="thread-added-pic">
-						<img src="">
-					</div>
-					<p class="project-date"> 12/03/1999 </p>
-					<a class="btn btn-primary main-more" href="#" role="button">Take this question</a>
-					<form method="post" action="">
-						<div class="row">
-							<div class="col-lg-9 offset-lg-3">
-								<div class="input-group">
-									<input type="text" class="form-control" placeholder="Have a question?" aria-label="Product name">
-									<span class="input-group-btn">
-										<button class="btn btn-secondary" type="button">Send</button>
-									</span>
-								</div>
-							</div>
-						</div>
+
+                   <h4 class="thread-title"><?= $listOfAllUsersToView['question'];  ?></h4>
+                    <p class="project-text"> <?= $listOfAllUsersToView['description'];  ?> </p>
+                    <p class="project-date"> <?= $listOfAllUsersToView['deadline'];  ?> 
+                    </p>
+                    <p class="project-date"> posted by <?= $listOfAllUsersToView['name'];  ?> </p>
+                    <p> <?= $listOfAllUsersToView['attachment'];  ?> </p>
+
+
+                    <form method="post" action="<?= base_url();?>takeThisQuestion">
+                    	<input type="hidden" name="questionId" value="<?= $listOfAllUsersToView['id'];  ?>">
+						<input type="submit" value="Take this Question">
+					</form>	
+              		<hr>
+
+        		<form method="post" action="<?= base_url();?>insert_answer">
+
+				  	<div class="form-group row">
+					    <div class="col-sm-4">
+					      <textarea name="inputAnswer" rows="5" cols="100" placeholder="Add an Answer!"></textarea>
+					    </div>
+				  	</div>	
+
+				  	<input type="hidden" name="inputUserid" value="<?= $cUser['users_id'];  ?>">
+
+				  	<input type="hidden" name="questionId" value="<?= $listOfAllUsersToView['id'];  ?>">
+
+				  	<div class="form-group row">
+					    <div class="col-xs-offset-2 col-xs-4 col-sm-offset-4 col-sm-4">
+		           		<button type="submit" name="submit" class="button_style btn"> Submit </button>
+		           		</div>
+					 </div>
+          		</form>
+
+          			<h4>Answers of this question</h4>
+
+					<?php foreach( $listOfAllAnswers as $item ) { ?>
+	                    <p class="project-text"> <?= $item['answer'];  ?> </p>
+	                    <p class="project-date"> <?= $item['created_at'];  ?> </p>
+	                    <p class="project-date"> posted by <?= $item['name'];  ?> </p>
+
+	                    <form method="post" action="<?= base_url();?>get_comments">
+	                    <input type="hidden" name="questionId" value="<?= $item['questions_id']; ?>">
+                    	<input type="hidden" name="answerId" value="<?= $item['id'];  ?>">
+						<input type="submit" value="Show Comments">
 					</form>
-					<hr>
-					<div class="question-box">
-						<p> questions should land here</p>
-						<form method="post" action="">
-							<div class="row">
-								<div class="col-lg-9 offset-lg-3">
-									<div class="input-group">
-										<input type="text" class="form-control" placeholder="Comment?" aria-label="Product name">
-										<span class="input-group-btn">
-											<button class="btn btn-secondary" type="button">Send</button>
-										</span>
-									</div>
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-			
-		</div>
+
+					<form method="post" action="<?= base_url();?>insert_comment">
+				  	<div class="form-group row">
+					    <div class="col-sm-4">
+					      <textarea name="InputComment" rows="2" cols="100" placeholder="Add a comment!"></textarea>
+					    </div>
+				  	</div>
+
+				  	<input type="hidden" name="inputUserid" value="<?= $cUser['users_id'];  ?>">
+
+				  	<input type="hidden" name="answerId" value="<?= $item['id'];  ?>">
+					
+					<div class="form-group row">
+					    <div class="col-xs-offset-2 col-xs-4 col-sm-offset-4 col-sm-4">
+		           		<button type="submit" name="submit" class="button_style btn"> Send </button>
+		           		</div>
+					 </div>
+					</form>
+
+					<?php } ?>
 
 
+	                <?php if( isset($comments_ans) ){ ?>
+                    <h4>Show the comments</h4>
+
+					<?php foreach( $comments_ans as $item ) { ?>
+	                    <p class="project-date"> <?= $item['comment'];  ?> </p>
+	                    <p class="project-date"> <?= $item['created_at'];  ?> </p>
+	                    <p class="project-date"> posted by <?= $item['name'];  ?> </p>
+	                    <hr>
+           			 <?php } ?>
+           			 <?php } ?>
+			</div>		
 	</div>
 </div>
 

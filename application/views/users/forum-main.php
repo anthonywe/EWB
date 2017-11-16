@@ -54,6 +54,7 @@
                     <p class="project-date"> <?= $item['deadline'];  ?> </p>
 
                     <form method="post" action="<?= base_url();?>form-question">
+                    	<input type="hidden" name="questionId" value="<?= $item['id'];  ?>">
 						<input type="submit" value="More..">
 					</form>	
               		<hr>

@@ -211,9 +211,62 @@ class Users extends CI_Controller {
 		// 	exit();
 		// }
 		
-		$this->load->view('users/forum-question');
+        $this->load->model('forum');
+         
+        $data = array(
+            'ctl_questionId'  => $this->input->post('questionId',true),
+            );
+        var_dump($data);
+        //$this->session->set_userdata('currentComments', $resultComments);
+
+        $resultQuestion = $this->forum->selectAQuestion($data);
+        $resultAnswer = $this->forum->selectAnswers($data);
+        // $resultComments = $this->forum->selectComments($data);
+
+        $data = array(
+            'cUser' => $this->session->userdata('currentUser'),
+            'comments_ans' => $this->session->userdata('currentComments'),
+            'ctl_questionId'  => $this->input->post('questionId',true),
+            'listOfAllUsersToView' => $resultQuestion,
+            'listOfAllAnswers' => $resultAnswer,
+            );
+		$this->load->view('users/forum-question',$data);
 		
 	}
+
+    public function get_comments()
+    {
+        $this->load->model('forum');
+
+        $data = array(
+            'ctl_AnswerId'  => $this->input->post('answerId',true),
+            );
+        $resultComments = $this->forum->selectComments($data);
+
+        $this->session->set_userdata('currentComments', $resultComments);
+
+         
+        $data = array(
+            'ctl_questionId'  => $this->input->post('questionId',true),
+            );
+        var_dump($data);
+        //$this->session->set_userdata('currentComments', $resultComments);
+
+        $resultQuestion = $this->forum->selectAQuestion($data);
+        $resultAnswer = $this->forum->selectAnswers($data);
+        // $resultComments = $this->forum->selectComments($data);
+
+        $data = array(
+            'cUser' => $this->session->userdata('currentUser'),
+            'comments_ans' => $this->session->userdata('currentComments'),
+            'ctl_questionId'  => $this->input->post('questionId',true),
+            'listOfAllUsersToView' => $resultQuestion,
+            'listOfAllAnswers' => $resultAnswer,
+            );
+        $this->load->view('users/forum-question',$data);
+        
+    }
+
 
     public function post_a_question() 
     {
@@ -271,6 +324,60 @@ class Users extends CI_Controller {
             }
     }
 
+    public function insert_answer() 
+    {
+
+        $this->form_validation->set_rules('inputAnswer', 'Answer', 'required');
+
+         if ($this->form_validation->run() == FALSE)
+            {
+                //     $data = array(
+                // 'cUser' => $this->session->userdata('currentUser')
+                // );
+                // $this->load->view('users/post-question', $data);
+                    
+            }
+            else{
+                $this->load->model('forum');
+                
+                $data = array(
+                    'ctl_inputAnswer'    => $this->input->post('inputAnswer',true),
+                    'ctl_inputUserid'  => $this->input->post('inputUserid',true),
+                    'ctl_questionId'  => $this->input->post('questionId',true),
+                );
+
+            // $this->session->set_flashdata('successPost', 'Question posted successfully. Thanks');
+            $this->forum->addAnswer( $data );
+             redirect(base_url('form_question'));
+            }
+    }
+
+    public function insert_comment() 
+    {
+         $this->form_validation->set_rules('InputComment', 'Comment', 'required');
+
+         if ($this->form_validation->run() == FALSE)
+            {
+                //     $data = array(
+                // 'cUser' => $this->session->userdata('currentUser')
+                // );
+                // $this->load->view('users/post-question', $data);
+                    
+            }
+            else{
+                $this->load->model('forum');
+                
+                $data = array(
+                    'ctl_InputComment'    => $this->input->post('InputComment',true),
+                    'ctl_inputUserid'  => $this->input->post('inputUserid',true),
+                    'ctl_answerId'  => $this->input->post('answerId',true),
+                );
+
+            // $this->session->set_flashdata('successPost', 'Question posted successfully. Thanks');
+            $this->forum->addComment( $data );
+             redirect(base_url('form_question'));
+            }
+    }
 
 	public function profile_engineer() 
 	{

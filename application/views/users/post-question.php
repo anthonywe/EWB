@@ -17,7 +17,7 @@
 		<nav class="navbar sticky-top nave-barC">
   		<!-- <span class="navbar-brand mb-0 h1">Navbar</span> -->
   		<p class="history">amount of .. and total project </p>
-  		<a href="<?=base_url(); ?>">log out</a>
+  		<a href="<?= base_url(); ?>logout">log out</a>
 		</nav>
 		
 		<div class="header-img">

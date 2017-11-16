@@ -21,6 +21,10 @@ $route['engg_register'] = 'users/engg_register';
 $route['ngo_reg'] = 'users/ngo_reg';
 $route['post-question'] = 'users/post_a_question';
 $route['insert-question'] = 'users/insert_a_question';
+$route['logout'] = 'users/logout';
+$route['get_comments'] = 'users/get_comments';
+$route['insert_answer'] = 'users/insert_answer';
+$route['insert_comment'] = 'users/insert_comment';
 
 
 
