@@ -5,7 +5,21 @@ class Users extends CI_Controller {
 	// register my user
 	public function home()
 	{
-		$this->load->view('users/forum-main');
+
+        //   $this->session->unset_userdata('currentUser');
+
+        $this->load->model('forum');
+        $result = $this->forum->listOfAll();
+
+        //var_dump($this->session->flashdata('error')); die();
+        $data = array(
+            'cUser' => $this->session->userdata('currentUser'),
+            'listOfAllUsersToView' => $result,
+            'error_msg' => $this->session->flashdata('error'),
+                'title' => 'List of my Users'
+            );
+        //var_dump($data); die();
+		$this->load->view('users/forum-main',$data);
 	}
 
 	public function login()
@@ -30,18 +44,13 @@ class Users extends CI_Controller {
         	$result = $this->User->checkLoginByUsernameAndPass( 
         		$username, $password);
 
-        	
-
         	if($result) {
         		$this->session->set_userdata('currentUser', $result);
-        		redirect(base_url('form-question'));
+        		redirect(base_url());
         		// echo 'I found this user:' . $result['name'];
-        		
         	} else {
 
-        		//var_dump($result);die();
         		$this->session->set_flashdata('error_msg', 'User is not found.');
-        		//var_dump($error_msg);die();
 
 				$data = array(
 					'err_msg' => $this->session->flashdata('error_msg')
@@ -188,6 +197,12 @@ class Users extends CI_Controller {
 
     }
 
+    public function logout()
+    {
+        $this->session->sess_destroy();
+        redirect(base_url());
+    }
+
 	public function form_question()
 	{
 		// if( !$this->session->userdata('currentUser') )
@@ -195,26 +210,35 @@ class Users extends CI_Controller {
 		// 	redirect(base_url());
 		// 	exit();
 		// }
-
-		// $this->load->model('post');
-		// $result = $this->post->listOfAll();
-		// $data = array(
-		// 	'cUser' => $this->session->userdata('currentUser'),
-		// 	'listOfAllUsersToView' => $result,
-		// 		'title' => 'List of my Users'
-		// 	);
-		// // $data = array(
-		// // 		'listOfAllUsersToView' => $result,
-		// // 		'title' => 'List of my Users'
-		// // 	);
-
-		// $this->load->view('users/timeline', $data);
-	
-	$this->load->view('users/forum-question');
-
-
+		
+		$this->load->view('users/forum-question');
 		
 	}
+
+    public function post_a_question() 
+    {
+
+
+        if( !$this->session->userdata('currentUser') )
+        {
+            $this->session->set_flashdata('error', 'You need to login to post a question.');
+            // var_dump($this->session->flashdata('error')); die();
+            redirect(base_url());
+            exit();
+        }
+
+        $data = array(
+            'cUser' => $this->session->userdata('currentUser')
+            );
+
+        $this->load->view('users/post-question',$data);
+    }
+
+    public function insert_a_question() 
+    {
+       // $this->load->view('users/insert-a-question');
+    }
+
 
 	public function profile_engineer() 
 	{

@@ -19,6 +19,8 @@ $route['register'] = 'users/register';
 $route['ngo_register'] = 'users/ngo_register';
 $route['engg_register'] = 'users/engg_register';
 $route['ngo_reg'] = 'users/ngo_reg';
+$route['post-question'] = 'users/post_a_question';
+$route['insert-question'] = 'users/insert_a_question';
 
 
 
