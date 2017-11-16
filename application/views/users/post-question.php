@@ -74,7 +74,8 @@
 				</div>
 			</div>
 
-			<form method="post" action="<?=base_url(); ?> insert-question">
+			<!-- <form method="post" action="<?=base_url(); ?>insert-question"> -->
+			<form method="post" action="<?= base_url();?>insert-question">
 
 			  	<div class="form-group row">
 				    <label for="Qtitle" class="col-sm-offset-2 col-sm-2 col-form-label">Question Title</label>
@@ -121,7 +122,7 @@
 				    </div>
 				</div>
 
-				<input type="hidden" name="inputUserid" value="<?= $cUser['id'];  ?>">
+				<input type="hidden" name="inputUserid" value="<?= $cUser['users_id'];  ?>">
 
 			 <div class="form-group row">
 			    <div class="col-xs-offset-2 col-xs-4 col-sm-offset-4 col-sm-4">
@@ -132,7 +133,7 @@
 
 		</div>
 
-		<div class="footer">
+		<div class="footer container">
 			 <h3>Contact us </h3>
 				<p> <span>
 				Stichting Ingenieurs zonder Grenzen <br>

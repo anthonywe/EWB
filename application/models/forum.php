@@ -3,28 +3,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class forum extends CI_Model
 {
-    // public function addPost( $item )
-    // {
-    //     $query = "INSERT INTO posts (post, users_id) VALUES ( ?, ?)";
-    //     $values = array(
-    //         $item['ctl_name'],
-    //         $item['ctl_userid']
-    //     );
-    //     $this->db->query($query, $values);
-    // }
-
+    
     public function listOfAll()
     {
          // return $this->db->query("SELECT * FROM users ORDER BY  upvote desc")->result_array();  
 
          return $this->db->query("SELECT * FROM questions ORDER BY created_at DESC LIMIT 5")->result_array();  
-
-//          return $this->db->query("SELECT posts.id, posts.post, posts.upvote, posts.users_id, users.name 
-// FROM reddit.posts left join reddit.users 
-// ON posts.users_id=users.id  
-// ORDER BY  upvote desc")->result_array();
           
     }
+
+    public function addQuestion( $item )
+    {
+        $query = "INSERT INTO questions (question, description, deadline, attachment, contact_info, users_id) VALUES ( ?, ?, ?, ?, ?, ?)";
+        $values = array(
+            $item['ctl_Qtitle'],
+            $item['ctl_Qdesc'],
+            $item['ctl_inputDate'],
+            $item['ctl_inputAttach'],
+            $item['ctl_inputContact'],
+            $item['ctl_inputUserid']
+        );
+        $this->db->query($query, $values);
+    }
+
 
   //   public function update_upvote($upvote_counter, $post_id)
   //   {

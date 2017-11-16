@@ -228,7 +228,8 @@ class Users extends CI_Controller {
         }
 
         $data = array(
-            'cUser' => $this->session->userdata('currentUser')
+            'cUser' => $this->session->userdata('currentUser'),
+            'suc_msg' => $this->session->flashdata('successPost')
             );
 
         $this->load->view('users/post-question',$data);
@@ -236,7 +237,38 @@ class Users extends CI_Controller {
 
     public function insert_a_question() 
     {
-       // $this->load->view('users/insert-a-question');
+
+        $this->form_validation->set_rules('Qtitle', 'Question Title', 'required');
+        $this->form_validation->set_rules('Qdesc',    'Question description', 'required');
+        $this->form_validation->set_rules('inputDate',    'Date', 'required');
+        $this->form_validation->set_rules('inputContact',    'Contact Information', 'required');
+        $this->form_validation->set_rules('robotCheck',    'I am not a Robot check', 'required');
+
+         if ($this->form_validation->run() == FALSE)
+            {
+
+                    $data = array(
+                'cUser' => $this->session->userdata('currentUser')
+                );
+                $this->load->view('users/post-question', $data);
+                    
+            }
+            else{
+                $this->load->model('forum');
+                
+                $data = array(
+                    'ctl_Qtitle'    => $this->input->post('Qtitle',true),
+                    'ctl_Qdesc'  => $this->input->post('Qdesc',true),
+                    'ctl_inputDate'  => $this->input->post('inputDate',true),
+                    'ctl_inputAttach'  => $this->input->post('inputAttach',true),
+                    'ctl_inputContact'  => $this->input->post('inputContact',true),
+                    'ctl_inputUserid'  => $this->input->post('inputUserid',true),
+                );
+
+            $this->session->set_flashdata('successPost', 'Question posted successfully. Thanks');
+            $this->forum->addQuestion( $data );
+             redirect(base_url('post-question'));
+            }
     }
 
 
