@@ -6,19 +6,16 @@ class Users extends CI_Controller {
 	public function home()
 	{
 
-        //   $this->session->unset_userdata('currentUser');
 
         $this->load->model('forum');
         $result = $this->forum->listOfAll();
 
-        //var_dump($this->session->flashdata('error')); die();
         $data = array(
             'cUser' => $this->session->userdata('currentUser'),
             'listOfAllUsersToView' => $result,
             'error_msg' => $this->session->flashdata('error'),
                 'title' => 'List of my Users'
             );
-        //var_dump($data); die();
 		$this->load->view('users/forum-main',$data);
 	}
 
@@ -410,6 +407,46 @@ class Users extends CI_Controller {
 
             }
     }
+
+
+    public function send_mail() { 
+
+
+         $from_email = "reshma1284@gmail.com"; 
+         $to_email = "anthony_wever@yahoo.com";  
+   
+         //Load email library 
+    
+         //configure email settings I Chose GMAIL
+         $config = Array(
+            'protocol' => 'smtp',
+            'smtp_host' => 'ssl://smtp.gmail.com',
+            'smtp_port' => '465',
+            'smtp_user' => 'weveranthony@gmail.com',
+            'smtp_pass' => 'restartnetwork',
+            'mailtype' => 'html',
+            'charset' => 'utf-8',
+            'wordwrap' => TRUE
+            );
+            //$this->load->library('email', $config);
+           // $this->email->set_newline("\r\n");
+                      // $this->load->library('email'); 
+
+            $this->load->library('email');
+            $this->email->initialize($config);
+
+        $this->email->from($from_email, 'Reshma'); 
+         $this->email->to($to_email);
+         $this->email->subject('Email Test'); 
+         $this->email->message('Testing the email class.'); 
+
+         //Send mail 
+         if($this->email->send()) 
+         $this->session->set_flashdata("email_sent","Email sent successfully."); 
+         else 
+         $this->session->set_flashdata("email_sent","Error in sending Email."); 
+      } 
+   
 
 	public function profile_engineer() 
 	{

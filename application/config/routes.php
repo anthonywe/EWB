@@ -25,6 +25,7 @@ $route['logout'] = 'users/logout';
 $route['get_comments'] = 'users/get_comments';
 $route['insert_answer'] = 'users/insert_answer';
 $route['insert_comment'] = 'users/insert_comment';
+$route['email'] = 'users/send_mail';
 
 
 

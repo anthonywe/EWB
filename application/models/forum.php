@@ -5,8 +5,7 @@ class forum extends CI_Model
 {
     
     public function listOfAll()
-    {
-         // return $this->db->query("SELECT * FROM users ORDER BY  upvote desc")->result_array();  
+    {  
 
          return $this->db->query("SELECT * FROM questions ORDER BY created_at DESC LIMIT 5")->result_array();  
           
