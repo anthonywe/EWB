@@ -207,11 +207,16 @@ class Users extends CI_Controller {
 		// // 		'listOfAllUsersToView' => $result,
 		// // 		'title' => 'List of my Users'
 		// // 	);
+		$this->load->model('User');
 
 		// $this->load->view('users/timeline', $data);
-
+		$current_user = $this->session->userdata('currentUser');
+		$id = $current_user['users_id'];
+		
+		$result = $this->User->oneUser($id);
 	$data = array(
 		'cUser' => $this->session->userdata('currentUser'),
+		'details' => $result
 		);
 
 	
@@ -333,7 +338,73 @@ class Users extends CI_Controller {
 
 			redirect(base_url('/'));
 		}
+	}
 
+	public function admin_page()
+	{
+		$this->load->model('User');
+		$result = $this->User->adminApproval();
+		// var_dump($result); die();
+		$data = array(
+			'details'  => $result
+			);
+		$this->load->view('users/admin', $data);
+
+	}
+
+	public function approveUser()
+	{
+		$this->load->model('User');
+		$id = $this->input->post('thisid', true);
+
+		$result = $this->User->userApproveProcess($id);
+		$approving = $result['approved'];
+		$approving++;
+
+		$data = array(
+			'ctl_approving'   => $approving,
+			'ctl_userid'      => $id
+			);
+
+		$this->User->approvingTheUser($data['ctl_approving'],$data['ctl_userid']);
+		redirect(base_url('admin'));
+
+		// $data = array(
+		// 	'ctl_userid' => $this->input->post('thisid', true)
+		// 	);
+	}
+
+	public function adminHome()
+
+	{
+		
+		$this->load->view('users/admin-home');
+	}
+
+	public function adminAnswers()
+	{
+		$this->load->model('User');
+		$result = $this->User->getAllAnswers();
+		$data = array(
+			'allAnswers'  => $result
+			);
+
+		$this->load->view('users/admin-answers', $data);
+
+	}
+
+	public function deleteAnswerProcess()
+	{
+		$this->load->model('User');
+		$id = $this->input->post('thisid', true);
+
+		// $this->User->deleteAnswer($id);
+
+		$this->User->deleteAnswersComments($id);
+
+		$this->User->deleteAnswer($id);
+
+		redirect(base_url('admin/answers'));
 
 
 	}

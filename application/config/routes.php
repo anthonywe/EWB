@@ -33,4 +33,14 @@ $route['profile-ngo'] = 'users/profile_ngo';
 $route['update_ngoprofile'] = 'users/updateUserInfoNgo';
 // update profile details engg
 $route['update_engprofile'] = 'users/updateUserInfoEngg';
+// route to go to admin view
+$route['admin'] = 'users/admin_page';
+
+$route['admin/approve_user'] = 'users/approveUser';
+
+$route['admin/home'] = 'users/adminHome';
+
+$route['admin/answers'] = 'users/adminAnswers';
+
+$route['admin/delete_answer'] = 'users/deleteAnswerProcess';
 ?>
