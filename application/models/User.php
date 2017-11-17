@@ -109,27 +109,6 @@ class User extends CI_Model
 
 
 
-   public function holdInfo()
-   {
-
-    $query ="UPDATE users SET (name, email, contact_person, field_of_activities,
-                website) VALUES (?, ?, ?, ?, ?)";
-      $values = array($data['ctl_name'], $data['ctl_email'],
-                      $data['ctl_contact_person'], $data['ctl_field_activities'], $data['ctl_website']);
-      return $this->db->query($query, $values);
-
-
-
-      $this->db->set('name', $data['ctl_name']);
-      $this->db->set('email', $data['ctl_email']);
-      $this->db->set('contact_person', $data['ctl_contact_person']);
-      $this->db->set('field_of_activities', $data['ctl_field_activities']);
-      $this->db->set('website', $data['ctl_website']);
-      $this->db->where('id', $data['ctl_userid']);
-      $this->db->update('users');
-   }
-
-
    public function adminApproval()
 
    {

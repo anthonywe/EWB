@@ -52,5 +52,5 @@ $route['admin/questions'] = 'users/adminQuestions';
 
 $route['admin/delete_question'] = 'users/deleteQuestionProcess';
 
-$route['email'] = 'users/send_mail';
+
 ?>
