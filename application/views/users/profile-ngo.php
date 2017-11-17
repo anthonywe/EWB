@@ -23,7 +23,12 @@
 	        <li><a href="#">Blog</a></li>
 	        <li><a href="#">Join us</a></li>
 	        <li><a href="<?=base_url(); ?>">Forum</a></li>
-	        <li><a href="<?=base_url('login'); ?>">Login</a></li>
+	        <?php if( isset($cUser) ){ ?>
+               <li><a href="<?=base_url('logout'); ?>">Logout</a></li>
+                <?php } ?>
+            <?php if( !isset($cUser) ){ ?>
+               	<li><a href="<?=base_url('login'); ?>">Login</a></li>
+                <?php } ?>
 	        <li><a href="#">Become a partner</a></li>
 	    	<li><a href="<?= base_url(); ?>logout">log out</a></li>
            	<button type="submit" name="submit" class=" btn" id="donate"> DONATE </button>
@@ -38,20 +43,7 @@
 	<div class="container ">
 		<div class="row">
 			<div class="col-md-2 side-bar bd-sidebar">
-				<div class="col-2">
-					<a href="">Answers#</a><br>
-					<p>Contacts</p>
-					<a class="btn btn-primary" href="#" role="button">Add Project</a>
-					<div class="row">
-						<div class=" offset-lg-3">
-							<div class="input-group search-div">
-								<input type="text" class="search-topic" placeholder="Search" aria-label="Product name">
-								<span class="input-group-btn">
-									<button class="btn btn-secondary" type="button">Go</button>
-								</span>
-							</div>
-						</div>
-					</div>
+				
 				</div>
 			</div>
 			

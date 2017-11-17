@@ -23,7 +23,12 @@
 	        <li><a href="#">Blog</a></li>
 	        <li><a href="#">Join us</a></li>
 	        <li><a href="<?=base_url(); ?>">Forum</a></li>
-	        <li><a href="<?=base_url('login'); ?>">Login</a></li>
+	        <?php if( isset($cUser) ){ ?>
+               <li><a href="<?=base_url('logout'); ?>">Logout</a></li>
+                <?php } ?>
+            <?php if( !isset($cUser) ){ ?>
+               	<li><a href="<?=base_url('login'); ?>">Login</a></li>
+                <?php } ?>
 	        <li><a href="#">Become a partner</a></li>
 	    	<li><a href="<?= base_url(); ?>logout">log out</a></li>
            	<button type="submit" name="submit" class=" btn" id="donate"> DONATE </button>
@@ -37,11 +42,9 @@
 	
 	<div class="container ">
 		<div class="row">
-			<div class="col-2 side-bar bd-sidebar">
+			<div class="col-sm-2 side-bar bd-sidebar">
 				<div class="col-2">
-					<a href="">Answers#</a><br>
-					<p>Contacts</p>
-					<!-- <a class="btn btn-primary" href="#" role="button">Add Project</a> -->
+					
 					<div class="row">
 						<div class=" offset-lg-3">
 							<div class="input-group search-div">
@@ -100,7 +103,7 @@
 
 	<div class="footer">
 			<div id="first_col">
-				<h4>Stay connected </h4>
+				<h4>Stay connected here</h4>
 				<p>Get updates about projects, activities, events, vacancies and more.</p>
 				<button type="submit" name="submit" class="button_style btn"> GET OUR NEWSLETTER </button>
 			</div>
@@ -124,11 +127,12 @@
 				</span></p>
 			</div>
 		</div>
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 		<!-- Latest compiled and minified JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
+	
 
 </body>
 </html>

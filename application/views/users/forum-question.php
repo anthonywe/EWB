@@ -23,7 +23,12 @@
 	        <li><a href="#">Blog</a></li>
 	        <li><a href="#">Join us</a></li>
 	        <li><a href="<?=base_url(); ?>">Forum</a></li>
-	        <li><a href="<?=base_url('login'); ?>">Login</a></li>
+	        <?php if( isset($cUser) ){ ?>
+               <li><a href="<?=base_url('logout'); ?>">Logout</a></li>
+                <?php } ?>
+            <?php if( !isset($cUser) ){ ?>
+               	<li><a href="<?=base_url('login'); ?>">Login</a></li>
+                <?php } ?>
 	        <li><a href="#">Become a partner</a></li>
            	<button type="submit" name="submit" class=" btn" id="donate"> DONATE </button>
 	      	</ul>
@@ -34,26 +39,16 @@
 			<img src="<?=base_url(); ?>public/images2.jpg" alt="image">
 		</div>
 	
+
 	<div class="container main-content">
 		<div class="row justify-content-end">
 			<div class="col-2 side-bar bd-sidebar">
-				<div class="col-2">
-					<a href="">Top Projects</a>
-					<a href="">New Projects</a>
-					<a class="btn btn-primary" href="#" role="button">Add Project</a>
-					<div class="row">
-						<div class=" offset-lg-3">
-							<div class="input-group search-div">
-								<input type="text" class="search-topic" placeholder="Search" aria-label="Product name">
-								<span class="input-group-btn">
-									<button class="btn btn-secondary" type="button">Go</button>
-								</span>
-							</div>
-						</div>
-					</div>
+				<div class="col-sm-2">
+					<a class="btn btn-primary" href="<?= base_url();?>post-question" role="button">Post Question</a>
+					
 				</div>
 			</div>
-			<div class="col-10 project-view ">
+			<div class="col-sm-10 project-view ">
 
                    <h4 class="thread-title"><?= $listOfAllUsersToView['question'];  ?></h4>
                     <p class="project-text"> <?= $listOfAllUsersToView['description'];  ?> </p>
@@ -69,6 +64,8 @@
 					</form>	
               		<hr>
 
+
+
         		<form method="post" action="<?= base_url();?>insert_answer">
 
 				  	<div class="form-group row">
@@ -76,13 +73,15 @@
 					      <textarea name="inputAnswer" rows="5" cols="100" placeholder="Add an Answer!"></textarea>
 					    </div>
 				  	</div>	
-
+					
 				  	<input type="hidden" name="inputUserid" value="<?= $cUser['users_id'];  ?>">
+
+				  	<p>user id exist? <?= $cUser['users_id']; ?></p>
 
 				  	<input type="hidden" name="questionId" value="<?= $listOfAllUsersToView['id'];  ?>">
 
 				  	<div class="form-group row">
-					    <div class="col-xs-offset-2 col-xs-4 col-sm-offset-4 col-sm-4">
+					    <div class="col-xs-offset-2 col-xs-4 col-sm-offset-7 col-sm-4">
 		           		<button type="submit" name="submit" class="button_style btn"> Submit </button>
 		           		</div>
 					 </div>
@@ -115,7 +114,7 @@
 	                    <input type="hidden" name="questionId" value="<?= $item['questions_id']; ?>">
 					
 					<div class="form-group row">
-					    <div class="col-xs-offset-2 col-xs-4 col-sm-offset-4 col-sm-4">
+					    <div class="col-xs-offset-2 col-xs-4 col-sm-offset-7 col-sm-4">
 		           		<button type="submit" name="submit" class="button_style btn"> Send </button>
 		           		</div>
 					 </div>

@@ -6,15 +6,15 @@ class Users extends CI_Controller {
 	public function home()
 	{
 
-
         $this->load->model('forum');
         $result = $this->forum->listOfAll();
-
+    
         $data = array(
             'cUser' => $this->session->userdata('currentUser'),
             'listOfAllUsersToView' => $result,
             'error_msg' => $this->session->flashdata('error'),
-                'title' => 'List of my Users'
+            'title' => 'List of my Users',
+            'details' => $result,
             );
 		$this->load->view('users/forum-main',$data);
 	}
@@ -277,6 +277,7 @@ class Users extends CI_Controller {
             exit();
         }
 
+
         $data = array(
             'cUser' => $this->session->userdata('currentUser'),
             'suc_msg' => $this->session->flashdata('successPost')
@@ -323,6 +324,12 @@ class Users extends CI_Controller {
 
     public function insert_answer() 
     {
+        if( !$this->session->userdata('currentUser') )
+        {
+        $this->session->set_flashdata('error', 'You need to login to post an answer.');
+         redirect(base_url());
+         exit();
+        }
 
         $this->form_validation->set_rules('inputAnswer', 'Answer', 'required');
 
@@ -366,6 +373,13 @@ class Users extends CI_Controller {
 
     public function insert_comment() 
     {
+        if( !$this->session->userdata('currentUser') )
+        {
+        $this->session->set_flashdata('error', 'You need to login to post a comment.');
+         redirect(base_url());
+         exit();
+        }
+
          $this->form_validation->set_rules('InputComment', 'Comment', 'required');
 
          if ($this->form_validation->run() == FALSE)

@@ -24,7 +24,12 @@
 	        <li><a href="#">Blog</a></li>
 	        <li><a href="#">Join us</a></li>
 	        <li><a href="<?=base_url(); ?>">Forum</a></li>
-	        <li><a href="<?=base_url('login'); ?>">Login</a></li>
+	        <?php if( isset($cUser) ){ ?>
+               <li><a href="<?=base_url('logout'); ?>">Logout</a></li>
+                <?php } ?>
+            <?php if( !isset($cUser) ){ ?>
+               	<li><a href="<?=base_url('login'); ?>">Login</a></li>
+                <?php } ?>
 	        <li><a href="#">Become a partner</a></li>
            	<button type="submit" name="submit" class=" btn" id="donate"> DONATE </button>
 	      	</ul>
@@ -37,14 +42,14 @@
 	
 	<div class="container">
 		<div class="row justify-content-end">
-			<div class="col-2 side-bar bd-sidebar">
-				<div class="col-2">
-					<a href="">Top Projects</a>
-					<a href="">New Projects</a>
-					<form method="post" action="<?= base_url();?>post-question">
+			<div class="col-sm-offset-1 side-bar bd-sidebar">
+				<div class="col-1">
+
+                    <form method="post" action="<?= base_url();?>post-question">
 						<input type="submit" class="btn btn-primary" value="Post a Question">
 					</form>	
-					<div class="row">
+
+					<!-- <div class="row">
 						<div class=" offset-lg-3">
 							<div class="input-group search-div">
 								<input type="text" class="search-topic" placeholder="Search" aria-label="Product name">
@@ -53,10 +58,10 @@
 								</span>
 							</div>
 						</div>
-					</div>
+					</div> -->
 				</div>
 			</div>
-			<div class="col-10 project-view ">
+			<div class="col-sm-10 project-view ">
 
 			<div class="row">
 				<div class="col-xs-offset-2 col-xs-4 col-sm-offset-4 col-sm-6">
@@ -68,8 +73,12 @@
 				</div>
 			</div>
 
+
+
 			<?php foreach( $listOfAllUsersToView as $item ) { ?>
-                    <h4><?= $item['question'];  ?></h4>
+
+					<h3> <?= $item['question']; ?> </h3>
+
                     <p class="project-text"> <?= $item['description'];  ?> </p>
                     <p class="project-date"> <?= $item['deadline'];  ?> </p>
 

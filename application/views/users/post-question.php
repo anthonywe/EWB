@@ -25,9 +25,13 @@
 	        <li><a href="#">Blog</a></li>
 	        <li><a href="#">Join us</a></li>
 	        <li><a href="<?=base_url(); ?>">Forum</a></li>
-	        <li><a href="<?=base_url('login'); ?>">Login</a></li>
+	        <?php if( isset($cUser) ){ ?>
+               <li><a href="<?=base_url('logout'); ?>">Logout</a></li>
+                <?php } ?>
+            <?php if( !isset($cUser) ){ ?>
+               	<li><a href="<?=base_url('login'); ?>">Login</a></li>
+                <?php } ?>
 	        <li><a href="#">Become a partner</a></li>
-	    	<li><a href="<?= base_url(); ?>logout">log out</a></li>
            	<button type="submit" name="submit" class=" btn" id="donate"> DONATE </button>
 	      	</ul>
   		<!-- <span class="navbar-brand mb-0 h1">Navbar</span> -->
@@ -145,8 +149,9 @@
 			</form>
 
 		</div>
+	</div>
 
-		<div class="footer">
+			<div class="footer">
 			<div id="first_col">
 				<h4>Stay connected </h4>
 				<p>Get updates about projects, activities, events, vacancies and more.</p>
@@ -173,7 +178,7 @@
 			</div>
 		</div>
 
-		
+	
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 		<!-- Latest compiled and minified JavaScript -->

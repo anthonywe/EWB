@@ -11,6 +11,8 @@ class forum extends CI_Model
           
     }
 
+    
+
     public function addQuestion( $item )
     {
         $query = "INSERT INTO questions (question, description, deadline, attachment, contact_info, users_id) VALUES ( ?, ?, ?, ?, ?, ?)";
