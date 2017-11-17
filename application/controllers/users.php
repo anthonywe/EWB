@@ -150,6 +150,8 @@ class Users extends CI_Controller {
             $image_name = $_FILES["inputProfilePic"] ["name"];
             $new_file_name=$random_digit.$image_name;
             $folder = "./public/".$new_file_name;
+
+
             $this->form_validation->set_rules('inputUserName', 'Username', 'required|is_unique[login.username]');
             $this->form_validation->set_rules('inputPassword', 'Password', 'required|min_length[8]');
             $this->form_validation->set_rules('inputCPassword', 'Confirm Password', 'required|matches[inputPassword]');
@@ -408,5 +410,110 @@ class Users extends CI_Controller {
 
 
 	}
+
+	public function adminComments()
+	{
+		$this->load->model('User');
+		$result = $this->User->getAllComments();
+
+		$data = array(
+			'allComments'   => $result
+			);
+
+		$this->load->view('users/admin-comments', $data);
+
+	}
+
+	public function deleteCommentProcess()
+	{
+		$this->load->model('User');
+		$comment_id = $this->input->post('thisid', true);
+		$this->User->deleteComment($comment_id);
+
+		redirect(base_url('admin/comments'));
+
+	}
+
+	public function adminQuestions()
+	{
+		$this->load->model('User');
+		$result = $this->User->getAllQuestion();
+
+		$data = array(
+			'allQuestions'   => $result
+			);
+
+		$this->load->view('users/admin-questions', $data);
+
+	}
+
+	public function deleteQuestionProcess()
+
+	{
+		$this->load->model('User');
+		$question_id = $this->input->post('thisid', true);
+
+		$result = $this->User->deleteQuestionPartOne($question_id);
+		$answer_id = $result['id'];
+
+		$this->User->deleteAnswersComments($answer_id);
+
+		$this->User->deleteQuestionPartTwo($question_id);
+
+		$this->User->deleteQuestion($question_id);
+
+		redirect(base_url('admin/questions'));
+
+	}
+
+	// public function send_mail() { 
+
+	// 	$this->load->library('email');
+ //        $from_email = "reshma1284@gmail.com";
+ //        $to_email = "anthony_wever@yahoo.com";  
+ 
+ //        //Load email library
+   
+ //        //configure email settings I Chose GMAIL
+ //        $config = Array(
+ //           'protocol' => 'smtp',
+ //           'smtp_host' => 'ssl://smtp.gmail.com',
+ //           'smtp_port' => '465',
+ //           'smtp_user' => 'weveranthony@gmail.com',
+ //           'smtp_pass' => 'restartnetwork',
+ //           'mailtype' => 'html',
+ //           'charset' => 'iso-8859-1',
+ //           'wordwrap' => TRUE
+ //           );
+ //           //$this->load->library('email', $config);
+ //          // $this->email->set_newline("\r\n");
+ //                     // $this->load->library('email'); 
+
+ //           // $this->load->library('email');
+ //        $this->email->initialize($config);
+ //        // $this->email->set_mailtype("html");
+	// 	$this->email->set_newline("\r\n");
+
+ //        $htmlContent = '<h1>Sending email via SMTP server</h1>';
+	// 	$htmlContent = '<p>This email has sent via SMTP server from CodeIgniter application.</p>';
+
+ //        $this->email->from($from_email, 'Reshma');
+ //        $this->email->to($to_email);
+ //        $this->email->subject('Email Test');
+ //        $this->email->message('Testing the email class.'); 
+
+ //        //Send mail
+ //        if($this->email->send())
+ //        {
+ //        $this->session->set_flashdata("email_sent","Email sent successfully.");
+ //    	}
+ //        else
+ //        {
+ //        $this->session->set_flashdata("email_sent","Error in sending Email.");
+ //    	}
+ //     }
+
+ 
+
 
 }

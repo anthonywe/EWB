@@ -43,4 +43,14 @@ $route['admin/home'] = 'users/adminHome';
 $route['admin/answers'] = 'users/adminAnswers';
 
 $route['admin/delete_answer'] = 'users/deleteAnswerProcess';
+
+$route['admin/comments'] = 'users/adminComments';
+
+$route['admin/delete_comments'] = 'users/deleteCommentProcess';
+
+$route['admin/questions'] = 'users/adminQuestions';
+
+$route['admin/delete_question'] = 'users/deleteQuestionProcess';
+
+$route['email'] = 'users/send_mail';
 ?>

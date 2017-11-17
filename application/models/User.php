@@ -184,6 +184,53 @@ class User extends CI_Model
 
    }
 
+   public function getAllComments()
+   {
+    return $this->db->query(
+      "SELECT comments.id, comments.comment, users.name
+       FROM comments
+       LEFT JOIN users
+       ON users_id = users.id;")->result_array();
+
+   }
+
+   public function deleteComment($comment_id)
+   {
+    $query = "DELETE FROM comments WHERE id = $comment_id";
+    $this->db->query($query);
+
+   }
+
+   public function getAllQuestion()
+   {
+    return $this->db->query("SELECT * FROM questions")->result_array();
+
+   }
+
+   public function deleteQuestionPartOne($q_id)
+   {
+      $query =  "SELECT * FROM answers
+                 Where questions_id = ?";
+            return $this->db->query($query, $q_id)->row_array();
+
+
+   }
+
+   public function deleteQuestionPartTwo($question_id)
+   {
+    $query = "DELETE FROM answers WHERE questions_id = $question_id";
+    $this->db->query($query);
+
+   }
+
+   public function deleteQuestion($question_id)
+   {
+    $query = "DELETE FROM questions
+              WHERE id=?";
+     $this->db->query($query, $question_id);
+
+   }
+
 
 
 

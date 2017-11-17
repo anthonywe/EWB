@@ -12,15 +12,15 @@
 
 </head>
 <body>
-	<p>here</p>
+
 
 	<div class="container">
 		<div class="row">
 			<div class="col-2">
 				<a href="<?=base_url(); ?>admin">Approvals Pending</a><br>
 				<a href="<?=base_url(); ?>admin/answers">Delete Answers</a><br>
-				<a href="">Delete Questions</a><br>
-				<a href="">Delete Comments</a><br>
+				<a href="<?=base_url(); ?>admin/comments">Delete Comments</a><br>
+				<a href="<?=base_url(); ?>admin/questions">Delete Questions</a><br>
 			</div>
 		</div>
 	</div>
