@@ -29,4 +29,28 @@ $route['form-question'] = 'users/form_question';
 $route['profile-engineer'] = 'users/profile_engineer';
 // route to go to ngo profile
 $route['profile-ngo'] = 'users/profile_ngo';
+// update profile details ngo
+$route['update_ngoprofile'] = 'users/updateUserInfoNgo';
+// update profile details engg
+$route['update_engprofile'] = 'users/updateUserInfoEngg';
+// route to go to admin view
+$route['admin'] = 'users/admin_page';
+
+$route['admin/approve_user'] = 'users/approveUser';
+
+$route['admin/home'] = 'users/adminHome';
+
+$route['admin/answers'] = 'users/adminAnswers';
+
+$route['admin/delete_answer'] = 'users/deleteAnswerProcess';
+
+$route['admin/comments'] = 'users/adminComments';
+
+$route['admin/delete_comments'] = 'users/deleteCommentProcess';
+
+$route['admin/questions'] = 'users/adminQuestions';
+
+$route['admin/delete_question'] = 'users/deleteQuestionProcess';
+
+
 ?>

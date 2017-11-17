@@ -29,6 +29,21 @@
 								</span>
 							</div>
 						</div>
+						<div>
+							<?php if($details['ngo_engg'] == 0) {?>
+							<form method="post" action="<?= base_url();?>profile-ngo">
+								<input type="hidden" name="userid" value="<?= $cUser['users_id']; ?>">
+								<input type="submit" value="profile">
+							</form>
+							<?php } ?>
+						<?php if($details['ngo_engg'] == 1) { ?>
+							<form method="post" action="<?= base_url();?>profile-engineer">
+								<input type="hidden" name="userid" value="<?= $cUser['users_id']; ?>">
+								<input type="submit" value="profile">
+							</form>
+							<?php } ?>
+						</div>
+						
 					</div>
 				</div>
 			</div>
