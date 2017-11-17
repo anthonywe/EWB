@@ -90,6 +90,8 @@
 				  	<input type="hidden" name="inputUserid" value="<?= $cUser['users_id'];  ?>">
 
 				  	<input type="hidden" name="answerId" value="<?= $item['id'];  ?>">
+				  	
+	                    <input type="hidden" name="questionId" value="<?= $item['questions_id']; ?>">
 					
 					<div class="form-group row">
 					    <div class="col-xs-offset-2 col-xs-4 col-sm-offset-4 col-sm-4">

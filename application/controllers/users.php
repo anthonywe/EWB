@@ -211,12 +211,13 @@ class Users extends CI_Controller {
 		// 	exit();
 		// }
 		
-        $this->load->model('forum');
+        		
+	   $this->load->model('forum');
          
         $data = array(
             'ctl_questionId'  => $this->input->post('questionId',true),
             );
-        var_dump($data);
+        //var_dump($data);
         //$this->session->set_userdata('currentComments', $resultComments);
 
         $resultQuestion = $this->forum->selectAQuestion($data);
@@ -230,10 +231,9 @@ class Users extends CI_Controller {
             'listOfAllUsersToView' => $resultQuestion,
             'listOfAllAnswers' => $resultAnswer,
             );
-		$this->load->view('users/forum-question',$data);
-		
-	}
+        $this->load->view('users/forum-question',$data);
 
+    }
     public function get_comments()
     {
         $this->load->model('forum');
@@ -346,9 +346,24 @@ class Users extends CI_Controller {
                     'ctl_questionId'  => $this->input->post('questionId',true),
                 );
 
-            // $this->session->set_flashdata('successPost', 'Question posted successfully. Thanks');
             $this->forum->addAnswer( $data );
-             redirect(base_url('form_question'));
+            
+            $data = array(
+                    'ctl_questionId'  => $this->input->post('questionId',true),
+                );
+        $resultQuestion = $this->forum->selectAQuestion($data);
+        $resultAnswer = $this->forum->selectAnswers($data);
+        // $resultComments = $this->forum->selectComments($data);
+
+        $data = array(
+            'cUser' => $this->session->userdata('currentUser'),
+            'comments_ans' => $this->session->userdata('currentComments'),
+            'ctl_questionId'  => $this->input->post('questionId',true),
+            'listOfAllUsersToView' => $resultQuestion,
+            'listOfAllAnswers' => $resultAnswer,
+            );
+        $this->load->view('users/forum-question',$data);
+
             }
     }
 
@@ -371,11 +386,28 @@ class Users extends CI_Controller {
                     'ctl_InputComment'    => $this->input->post('InputComment',true),
                     'ctl_inputUserid'  => $this->input->post('inputUserid',true),
                     'ctl_answerId'  => $this->input->post('answerId',true),
+                    'ctl_questionId'  => $this->input->post('questionId',true),
                 );
 
-            // $this->session->set_flashdata('successPost', 'Question posted successfully. Thanks');
             $this->forum->addComment( $data );
-             redirect(base_url('form_question'));
+
+            $data = array(
+                    'ctl_questionId'  => $this->input->post('questionId',true),
+                );
+
+        $resultQuestion = $this->forum->selectAQuestion($data);
+        $resultAnswer = $this->forum->selectAnswers($data);
+        // $resultComments = $this->forum->selectComments($data);
+
+        $data = array(
+            'cUser' => $this->session->userdata('currentUser'),
+            'comments_ans' => $this->session->userdata('currentComments'),
+            'ctl_questionId'  => $this->input->post('questionId',true),
+            'listOfAllUsersToView' => $resultQuestion,
+            'listOfAllAnswers' => $resultAnswer,
+            );
+        $this->load->view('users/forum-question',$data);
+
             }
     }
 
