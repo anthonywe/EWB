@@ -19,6 +19,7 @@ p{
 	background-color: rgba(15,15,30,0.9);
 	margin-bottom: 0px;
 	height: 80px;
+	padding:10px;
 }
 .history{
 	font-family: 'Roboto', sans-serif;
@@ -53,7 +54,7 @@ h1{
 
 .header{
 	height: 20%;
-	margin:5% 20% 5% 20%;
+	margin:5% 15% 5% 20%;
 }
 .header span{
 	margin-left: 50%;
@@ -79,10 +80,13 @@ button:hover{
 	height: 200px;
 	background-color: rgba(0, 144, 255, 1);
 	padding: 10px 10px;
-    text-align: right;
+
 }
 .footer p span{
 	padding-bottom: 10px;
+	font-family: 'Roboto', sans-serif;
+	font-size: 16 px;
+	color: white;
 }
 
 .alert-error{
@@ -92,3 +96,65 @@ button:hover{
 .message_style{
 	color:blue;
 }
+#donate{
+	font-family: 'Roboto';
+	font-size: 16 px;
+	color: white;
+	width: 150px;
+	background-color: rgba(255, 0, 83, 1); 
+	font-weight: bold;
+	margin-right: 10px;
+}
+#donate:hover{
+	background-color: rgba(0, 144, 255, 1);	
+}
+
+#logo{
+	width: 100px;
+	height: 60px;
+}
+#first_col{
+	width: 33%;
+	float: left;
+	text-align: center;
+	margin-top: 10px;
+}
+#first_col button{
+	border: 2px solid white;
+	width: 250px;
+}
+#first_col p{
+	font-family: 'Roboto', sans-serif;
+	font-size: 16 px;
+	color: white;
+	padding-left: 50px;
+    width: 350px;
+}
+#sec_col{
+	width: 33%;
+	float: left;
+	text-align: center;
+	margin-top: 20px;
+}
+#sec_col h4{
+	text-align: center;
+}
+#third_col{
+	width: 33%;
+	float: right;
+	margin-top: 10px;
+}
+footer h3,h4{
+	font-family: 'Roboto', sans-serif;
+	font-size: 16 px;
+	color: white;
+	padding-bottom: 10px;
+}
+/*#align_Ngo{
+	float: left;
+	background-color: red;
+}
+#align_Engg{
+	float: right;
+	background-color: red;
+}*/

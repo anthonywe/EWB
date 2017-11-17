@@ -18,13 +18,26 @@
 			$NGOfield = 0;
 		?>	
 
-		<nav class="navbar sticky-top nave-barC">
+		<nav class="navbar sticky-top nave-barC ">
+			<ul class="nav navbar-nav navbar-left">
+				<li> <img src="<?=base_url(); ?>public/logo.jpg" id="logo"></li>
+			</ul>
+			<ul class="nav navbar-nav nav_style navbar-right">
+	        <li><a href="#">About</a></li>
+	        <li><a href="#">Projects</a></li>
+	        <li><a href="#">Events</a></li>
+	        <li><a href="#">Blog</a></li>
+	        <li><a href="#">Join us</a></li>
+	        <li><a href="<?=base_url(); ?>">Forum</a></li>
+	        <li><a href="<?=base_url('login'); ?>">Login</a></li>
+	        <li><a href="#">Become a partner</a></li>
+           	<button type="submit" name="submit" class=" btn" id="donate"> DONATE </button>
+	      	</ul>
   		<!-- <span class="navbar-brand mb-0 h1">Navbar</span> -->
-  		<p class="history">amount of .. and total project </p>
 		</nav>
 		
 		<div class="header-img">
-			<img src="<?=base_url(); ?>public/tulips.jpg" alt="image">
+			<img src="<?=base_url(); ?>public/images2.jpg" alt="image">
 		</div>
 
 		<div class="container">
@@ -147,7 +160,21 @@
 		</div>
 
 		<div class="footer">
-			 <h3>Contact us </h3>
+			<div id="first_col">
+				<h4>Stay connected </h4>
+				<p>Get updates about projects, activities, events, vacancies and more.</p>
+				<button type="submit" name="submit" class="button_style btn"> GET OUR NEWSLETTER </button>
+			</div>
+
+			<div id="sec_col">
+				<h4>Follow Us</h4>
+				<a href="#"><img src="<?=base_url(); ?>public/fb.svg"></a>
+				<a href="#"><img src="<?=base_url(); ?>public/in.svg"></a>
+				<a href="#"><img src="<?=base_url(); ?>public/tw.svg"></a>
+			</div>
+			
+			<div id="third_col">
+			 <h4>Contact us </h4>
 				<p> <span>
 				Stichting Ingenieurs zonder Grenzen <br>
 				projects@ewbnl.org <br>
@@ -156,7 +183,10 @@
 				KvK 65174275 – RSIN 856007638 <br>
 				Read our policy <br>
 				</span></p>
+			</div>
 		</div>
+
+
 		
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
