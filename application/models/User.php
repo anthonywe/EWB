@@ -184,6 +184,7 @@ class User extends CI_Model
    {
     return $this->db->query("SELECT * FROM questions")->result_array();
 
+
    }
 
    public function deleteQuestionPartOne($q_id)

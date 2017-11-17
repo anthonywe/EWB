@@ -5,7 +5,18 @@ class Users extends CI_Controller {
 	// register my user
 	public function home()
 	{
-		$this->load->view('users/forum-main');
+
+        $this->load->model('forum');
+        $result = $this->forum->listOfAll();
+    
+        $data = array(
+            'cUser' => $this->session->userdata('currentUser'),
+            'listOfAllUsersToView' => $result,
+            'error_msg' => $this->session->flashdata('error'),
+            'title' => 'List of my Users',
+            'details' => $result,
+            );
+		$this->load->view('users/forum-main',$data);
 	}
 
 	public function login()
@@ -30,18 +41,13 @@ class Users extends CI_Controller {
         	$result = $this->User->checkLoginByUsernameAndPass( 
         		$username, $password);
 
-        	
-
         	if($result) {
         		$this->session->set_userdata('currentUser', $result);
-        		redirect(base_url('form-question'));
+        		redirect(base_url());
         		// echo 'I found this user:' . $result['name'];
-        		
         	} else {
 
-        		//var_dump($result);die();
         		$this->session->set_flashdata('error_msg', 'User is not found.');
-        		//var_dump($error_msg);die();
 
 				$data = array(
 					'err_msg' => $this->session->flashdata('error_msg')
@@ -190,6 +196,12 @@ class Users extends CI_Controller {
 
     }
 
+    public function logout()
+    {
+        $this->session->sess_destroy();
+        redirect(base_url());
+    }
+
 	public function form_question()
 	{
 		// if( !$this->session->userdata('currentUser') )
@@ -197,36 +209,272 @@ class Users extends CI_Controller {
 		// 	redirect(base_url());
 		// 	exit();
 		// }
-
-		// $this->load->model('post');
-		// $result = $this->post->listOfAll();
-		// $data = array(
-		// 	'cUser' => $this->session->userdata('currentUser'),
-		// 	'listOfAllUsersToView' => $result,
-		// 		'title' => 'List of my Users'
-		// 	);
-		// // $data = array(
-		// // 		'listOfAllUsersToView' => $result,
-		// // 		'title' => 'List of my Users'
-		// // 	);
+		
+        		
+	   $this->load->model('forum');
+         
+        $data = array(
+            'ctl_questionId'  => $this->input->post('questionId',true),
+            );
+        //var_dump($data);
+        //$this->session->set_userdata('currentComments', $resultComments);
 		$this->load->model('User');
 
 		// $this->load->view('users/timeline', $data);
-		$current_user = $this->session->userdata('currentUser');
-		$id = $current_user['users_id'];
+	// 	$current_user = $this->session->userdata('currentUser');
+	// 	$id = $current_user['users_id'];
 		
-		$result = $this->User->oneUser($id);
-	$data = array(
-		'cUser' => $this->session->userdata('currentUser'),
-		'details' => $result
-		);
+	// 	$result = $this->User->oneUser($id);
+	// $data = array(
+	// 	'cUser' => $this->session->userdata('currentUser'),
+	// 	'details' => $result
+	// 	);
 
-	
-	$this->load->view('users/forum-question', $data);
+        $resultQuestion = $this->forum->selectAQuestion($data);
+        $resultAnswer = $this->forum->selectAnswers($data);
+        // $resultComments = $this->forum->selectComments($data);
+
+        $data = array(
+            'cUser' => $this->session->userdata('currentUser'),
+            'comments_ans' => $this->session->userdata('currentComments'),
+            'ctl_questionId'  => $this->input->post('questionId',true),
+            'listOfAllUsersToView' => $resultQuestion,
+            'listOfAllAnswers' => $resultAnswer,
+            );
+        $this->load->view('users/forum-question',$data);
 
 
-		
-	}
+    }
+    public function get_comments()
+    {
+        $this->load->model('forum');
+
+        $data = array(
+            'ctl_AnswerId'  => $this->input->post('answerId',true),
+            );
+        $resultComments = $this->forum->selectComments($data);
+
+        $this->session->set_userdata('currentComments', $resultComments);
+
+         
+        $data = array(
+            'ctl_questionId'  => $this->input->post('questionId',true),
+            );
+        var_dump($data);
+        //$this->session->set_userdata('currentComments', $resultComments);
+
+        $resultQuestion = $this->forum->selectAQuestion($data);
+        $resultAnswer = $this->forum->selectAnswers($data);
+        // $resultComments = $this->forum->selectComments($data);
+
+        $data = array(
+            'cUser' => $this->session->userdata('currentUser'),
+            'comments_ans' => $this->session->userdata('currentComments'),
+            'ctl_questionId'  => $this->input->post('questionId',true),
+            'listOfAllUsersToView' => $resultQuestion,
+            'listOfAllAnswers' => $resultAnswer,
+            );
+        $this->load->view('users/forum-question',$data);
+        
+    }
+
+
+    public function post_a_question() 
+    {
+
+
+        if( !$this->session->userdata('currentUser') )
+        {
+            $this->session->set_flashdata('error', 'You need to login to post a question.');
+            // var_dump($this->session->flashdata('error')); die();
+            redirect(base_url());
+            exit();
+        }
+
+
+        $data = array(
+            'cUser' => $this->session->userdata('currentUser'),
+            'suc_msg' => $this->session->flashdata('successPost')
+            );
+
+        $this->load->view('users/post-question',$data);
+    }
+
+    public function insert_a_question() 
+    {
+
+        $this->form_validation->set_rules('Qtitle', 'Question Title', 'required');
+        $this->form_validation->set_rules('Qdesc',    'Question description', 'required');
+        $this->form_validation->set_rules('inputDate',    'Date', 'required');
+        $this->form_validation->set_rules('inputContact',    'Contact Information', 'required');
+        $this->form_validation->set_rules('robotCheck',    'I am not a Robot check', 'required');
+
+         if ($this->form_validation->run() == FALSE)
+            {
+
+                    $data = array(
+                'cUser' => $this->session->userdata('currentUser')
+                );
+                $this->load->view('users/post-question', $data);
+                    
+            }
+            else{
+                $this->load->model('forum');
+                
+                $data = array(
+                    'ctl_Qtitle'    => $this->input->post('Qtitle',true),
+                    'ctl_Qdesc'  => $this->input->post('Qdesc',true),
+                    'ctl_inputDate'  => $this->input->post('inputDate',true),
+                    'ctl_inputAttach'  => $this->input->post('inputAttach',true),
+                    'ctl_inputContact'  => $this->input->post('inputContact',true),
+                    'ctl_inputUserid'  => $this->input->post('inputUserid',true),
+                );
+
+            $this->session->set_flashdata('successPost', 'Question posted successfully. Thanks');
+            $this->forum->addQuestion( $data );
+             redirect(base_url('post-question'));
+            }
+    }
+
+    public function insert_answer() 
+    {
+        if( !$this->session->userdata('currentUser') )
+        {
+        $this->session->set_flashdata('error', 'You need to login to post an answer.');
+         redirect(base_url());
+         exit();
+        }
+
+        $this->form_validation->set_rules('inputAnswer', 'Answer', 'required');
+
+         if ($this->form_validation->run() == FALSE)
+            {
+                //     $data = array(
+                // 'cUser' => $this->session->userdata('currentUser')
+                // );
+                // $this->load->view('users/post-question', $data);
+                    
+            }
+            else{
+                $this->load->model('forum');
+                
+                $data = array(
+                    'ctl_inputAnswer'    => $this->input->post('inputAnswer',true),
+                    'ctl_inputUserid'  => $this->input->post('inputUserid',true),
+                    'ctl_questionId'  => $this->input->post('questionId',true),
+                );
+
+            $this->forum->addAnswer( $data );
+            
+            $data = array(
+                    'ctl_questionId'  => $this->input->post('questionId',true),
+                );
+        $resultQuestion = $this->forum->selectAQuestion($data);
+        $resultAnswer = $this->forum->selectAnswers($data);
+        // $resultComments = $this->forum->selectComments($data);
+
+        $data = array(
+            'cUser' => $this->session->userdata('currentUser'),
+            'comments_ans' => $this->session->userdata('currentComments'),
+            'ctl_questionId'  => $this->input->post('questionId',true),
+            'listOfAllUsersToView' => $resultQuestion,
+            'listOfAllAnswers' => $resultAnswer,
+            );
+        $this->load->view('users/forum-question',$data);
+
+            }
+    }
+
+    public function insert_comment() 
+    {
+        if( !$this->session->userdata('currentUser') )
+        {
+        $this->session->set_flashdata('error', 'You need to login to post a comment.');
+         redirect(base_url());
+         exit();
+        }
+
+         $this->form_validation->set_rules('InputComment', 'Comment', 'required');
+
+         if ($this->form_validation->run() == FALSE)
+            {
+                //     $data = array(
+                // 'cUser' => $this->session->userdata('currentUser')
+                // );
+                // $this->load->view('users/post-question', $data);
+                    
+            }
+            else{
+                $this->load->model('forum');
+                
+                $data = array(
+                    'ctl_InputComment'    => $this->input->post('InputComment',true),
+                    'ctl_inputUserid'  => $this->input->post('inputUserid',true),
+                    'ctl_answerId'  => $this->input->post('answerId',true),
+                    'ctl_questionId'  => $this->input->post('questionId',true),
+                );
+
+            $this->forum->addComment( $data );
+
+            $data = array(
+                    'ctl_questionId'  => $this->input->post('questionId',true),
+                );
+
+        $resultQuestion = $this->forum->selectAQuestion($data);
+        $resultAnswer = $this->forum->selectAnswers($data);
+        // $resultComments = $this->forum->selectComments($data);
+
+        $data = array(
+            'cUser' => $this->session->userdata('currentUser'),
+            'comments_ans' => $this->session->userdata('currentComments'),
+            'ctl_questionId'  => $this->input->post('questionId',true),
+            'listOfAllUsersToView' => $resultQuestion,
+            'listOfAllAnswers' => $resultAnswer,
+            );
+        $this->load->view('users/forum-question',$data);
+
+            }
+    }
+
+
+    public function send_mail() { 
+
+
+         $from_email = "reshma1284@gmail.com"; 
+         $to_email = "anthony_wever@yahoo.com";  
+   
+         //Load email library 
+    
+         //configure email settings I Chose GMAIL
+         $config = Array(
+            'protocol' => 'smtp',
+            'smtp_host' => 'ssl://smtp.gmail.com',
+            'smtp_port' => '465',
+            'smtp_user' => 'weveranthony@gmail.com',
+            'smtp_pass' => 'restartnetwork',
+            'mailtype' => 'html',
+            'charset' => 'utf-8',
+            'wordwrap' => TRUE
+            );
+            //$this->load->library('email', $config);
+           // $this->email->set_newline("\r\n");
+                      // $this->load->library('email'); 
+
+            $this->load->library('email');
+            $this->email->initialize($config);
+
+        $this->email->from($from_email, 'Reshma'); 
+         $this->email->to($to_email);
+         $this->email->subject('Email Test'); 
+         $this->email->message('Testing the email class.'); 
+
+         //Send mail 
+         if($this->email->send()) 
+         $this->session->set_flashdata("email_sent","Email sent successfully."); 
+         else 
+         $this->session->set_flashdata("email_sent","Error in sending Email."); 
+      } 
+   
 
 	public function profile_engineer() 
 	{
@@ -243,6 +491,9 @@ class Users extends CI_Controller {
 
 		$this->load->view('users/profile-engineer', $data);
 	}
+
+
+    
 
 	public function profile_ngo()
 	{	//load model
@@ -466,54 +717,6 @@ class Users extends CI_Controller {
 
 	}
 
-	// public function send_mail() { 
-
-	// 	$this->load->library('email');
- //        $from_email = "reshma1284@gmail.com";
- //        $to_email = "anthony_wever@yahoo.com";  
- 
- //        //Load email library
-   
- //        //configure email settings I Chose GMAIL
- //        $config = Array(
- //           'protocol' => 'smtp',
- //           'smtp_host' => 'ssl://smtp.gmail.com',
- //           'smtp_port' => '465',
- //           'smtp_user' => 'weveranthony@gmail.com',
- //           'smtp_pass' => 'restartnetwork',
- //           'mailtype' => 'html',
- //           'charset' => 'iso-8859-1',
- //           'wordwrap' => TRUE
- //           );
- //           //$this->load->library('email', $config);
- //          // $this->email->set_newline("\r\n");
- //                     // $this->load->library('email'); 
-
- //           // $this->load->library('email');
- //        $this->email->initialize($config);
- //        // $this->email->set_mailtype("html");
-	// 	$this->email->set_newline("\r\n");
-
- //        $htmlContent = '<h1>Sending email via SMTP server</h1>';
-	// 	$htmlContent = '<p>This email has sent via SMTP server from CodeIgniter application.</p>';
-
- //        $this->email->from($from_email, 'Reshma');
- //        $this->email->to($to_email);
- //        $this->email->subject('Email Test');
- //        $this->email->message('Testing the email class.'); 
-
- //        //Send mail
- //        if($this->email->send())
- //        {
- //        $this->session->set_flashdata("email_sent","Email sent successfully.");
- //    	}
- //        else
- //        {
- //        $this->session->set_flashdata("email_sent","Error in sending Email.");
- //    	}
- //     }
-
- 
 
 
 }

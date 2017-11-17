@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset = "utf-8"/>
-		<title>Engineer Registration</title>
+		<title>Post a question on EWB Forum</title>
 		<meta name="description" content="Engineers without borders">
 		<meta name="viewport" content="width=device-width, initial-scale=1">		
 		<!-- Latest compiled and minified CSS -->
@@ -14,9 +14,9 @@
 
 	<body>
 
-		<nav class="navbar sticky-top nave-barC">
-		<ul class="nav navbar-nav navbar-left">
-			<li> <img src="<?=base_url(); ?>public/logo.jpg" id="logo"></li>
+		<nav class="navbar sticky-top nave-barC ">
+			<ul class="nav navbar-nav navbar-left">
+				<li> <img src="<?=base_url(); ?>public/logo.jpg" id="logo"></li>
 			</ul>
 			<ul class="nav navbar-nav nav_style navbar-right">
 	        <li><a href="#">About</a></li>
@@ -42,120 +42,116 @@
 		</div>
 		
 		<div class="container">
+
+			<div class="row">
+				<div class="col-xs-offset-2 col-xs-4 col-sm-offset-10 col-sm-2">
+					<p class="message_style"> Welcome <?=  $cUser['username'];   ?> 
+					</p>
+			</div>
+
 			<div class="header">
 				<div class="row">
-				  <div class="col-xs-offset-2 col-xs-4 col-sm-offset-3 col-sm-6"><h1> Registration Form </h1></div>
+				  <div class="col-xs-offset-2 col-xs-4 col-sm-offset-3 col-sm-6"><h1> Post a Question </h1></div>
 				</div>
 			</div>
+			
 			<div class="row">
 				<div class="col-xs-offset-2 col-xs-4 col-sm-offset-4 col-sm-6">
-			<?php
-                    $err = validation_errors('<li>', '</li>');
-                    if( $err ) {
-                ?>
-                    <ul class="alert-error">
-                    <?php echo $err; ?>
-                    </ul>
-                <?php } ?>
-            	</div>
-        	</div>
+			<!-- success message from registration process
+ -->			 <?php if( isset($suc_msg) ){ ?>
+                <div class="alert-error"><?= $suc_msg; ?>
+                </div>
+                <?php } ?> 
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-xs-offset-2 col-xs-4 col-sm-offset-4 col-sm-6">
+			<!-- ERROR message 
+ -->			 <?php if( isset($error_msg) ){ ?>
+                <div class="alert-error"><?= $error_msg; ?>
+                </div>
+                <?php } ?> 
+				</div>
+			</div>
 
 
-			<form method="post" action="<?= base_url(); ?>engg_register" enctype="multipart/form-data">
-			  <div class="form-group row">
-			    <label for="inputUserName" class="col-sm-offset-2 col-sm-2 col-form-label">User Name</label>
-			    <div class="col-sm-4">
-			      <input type="text" class="form-control" name="inputUserName">
-			    </div>
-			  </div>
-			  
-			  
-			  <input type="hidden" name="ngo_eng" value="1">
-			  
+			<div class="row">
+				<div class="col-xs-offset-2 col-xs-4 col-sm-offset-4 col-sm-6">
+			<!-- validation errror message from form
+ -->
+					<?php
+						$err = validation_errors('<li>', '</li>');
+						if ( $err ) {
+						?>
+							<ul class="alert-error"> 
+							<?php echo $err; ?>
+							</ul>
+					<?php } ?>	
+				</div>
+			</div>
+
+			<!-- <form method="post" action="<?=base_url(); ?>insert-question"> -->
+			<form method="post" action="<?= base_url();?>insert-question">
+
+			  	<div class="form-group row">
+				    <label for="Qtitle" class="col-sm-offset-2 col-sm-2 col-form-label">Question Title</label>
+				    <div class="col-sm-4">
+				      <textarea name="Qtitle" rows="5" cols="100"></textarea>
+				    </div>
+			  	</div>
 			
 				<div class="form-group row">
-				    <label for="inputPassword" class="col-sm-offset-2 col-sm-2 col-form-label">Password</label>
+				    <label for="Qdesc" class="col-sm-offset-2 col-sm-2 col-form-label">Question Description</label>
 				    <div class="col-sm-4">
-				      <input type="password" class="form-control" name="inputPassword">
+				      <textarea name="Qdesc" rows="5" cols="100"></textarea>
 				    </div>
 			  	</div>
 			  
-			    <div class="form-group row">
-				    <label for="inputCPassword" class="col-sm-offset-2 col-sm-2 col-form-label">Confirm Password</label>
-				    <div class="col-sm-4">
-				      <input type="password" class="form-control" name="inputCPassword">
-				    </div>
-			  	</div>
+				<div class="form-group row">
+				  <label for="inputDate" class="col-sm-offset-2 col-sm-2 col-form-label">Date</label>
+				  <div class="col-sm-4">
+				    <input class="form-control" type="date" placeholder="yyyy-mm-dd"  name="inputDate">
+				  </div>
+				</div>
 
-			  	<div class="form-group row">
-				    <label for="inputName" class="col-sm-offset-2 col-sm-2 col-form-label">Name</label>
+				<div class="form-group row">
+				    <label for="inputAttach" class="col-sm-offset-2 col-sm-2 col-form-label">Attachment</label>
 				    <div class="col-sm-4">
-				      <input type="text" class="form-control" name="inputName">
+				    	<input type="file" class="form-control" name="inputAttach" accept=".doc,.docx,.xml,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
 				    </div>
 			  	</div>
 
 				<div class="form-group row">
-				    <label for="inputEmail" class="col-sm-offset-2 col-sm-2 col-form-label">Email</label>
+				    <label for="inputContact" class="col-sm-offset-2 col-sm-2 col-form-label">Contact Information</label>
 				    <div class="col-sm-4">
-				      <input type="text" class="form-control" name="inputEmail">
+				      <input type="text" class="form-control" name="inputContact">
 				    </div>
 			  	</div>
-
-			  	<div class="form-group row">
-				    <label for="inputExpertise" class="col-sm-offset-2 col-sm-2 col-form-label">Field of Expertise</label>
-				    <div class="col-sm-4">
-				      <input type="text" class="form-control" name="inputExpertise">
-				    </div>
-			  	</div>
-
-			  	<div class="form-group row">
-				    <label for="inputPhone" class="col-sm-offset-2 col-sm-2 col-form-label">Phone Number</label>
-				    <div class="col-sm-4">
-				      <input type="text" class="form-control" name="inputPhone">
-				    </div>
-			  	</div>
-
-			  	<div class="form-group row">
-				    <label for="inputLinkedin" class="col-sm-offset-2 col-sm-2 col-form-label">Linkedin Profile URL</label>
-				    <div class="col-sm-4">
-				      <input type="text" class="form-control" name="inputLinkedIn">
-				    </div>
-			  	</div>
-
-			  	<div class="form-group row">
-				    <label for="inputPic" class="col-sm-offset-2 col-sm-2 col-form-label">Profile Picture</label>
-				    <div class="col-sm-4">
-				    <input type="file" name="inputProfilePic" class="form-control" id="inputPic" accept="image/*">
-				    </div>
-			  	</div>
-
-			  	<div class="form-group row">
-				    <label for="inputAbout" class="col-sm-offset-2 col-sm-2 col-form-label">About Me</label>
-				    <div class="col-sm-4">
-				      <textarea name="inputAboutMe" rows="5" cols="100"></textarea>
-				    </div>
-			  	</div>
-
+				
 			  	<div class="form-group row">
 				    <div class="form-check">
 				      <label class="form-check-label" class="col-sm-offset-2 col-sm-2 col-form-label"> 
 				      </label>
 				      <div class="col-sm-offset-4 col-sm-4">
-				        <input class="form-check-input" type="checkbox" name="inputNotRobot" class="form-control"> I am not a Robot
+				        <input class="form-check-input" type="checkbox" class="form-control" name="robotCheck"> I am not a Robot
 				      </div>
 				    </div>
 				</div>
 
+				<input type="hidden" name="inputUserid" value="<?= $cUser['users_id'];  ?>">
+
 			 <div class="form-group row">
 			    <div class="col-xs-offset-2 col-xs-4 col-sm-offset-4 col-sm-4">
-           		<button type="submit" name="submit" class="button_style btn"> Register </button>
+           		<button type="submit" name="submit" class="button_style btn"> Submit </button>
            		</div>
 			 </div>
 			</form>
 
 		</div>
+	</div>
 
-		<div class="footer">
+			<div class="footer">
 			<div id="first_col">
 				<h4>Stay connected </h4>
 				<p>Get updates about projects, activities, events, vacancies and more.</p>
@@ -182,7 +178,7 @@
 			</div>
 		</div>
 
-		
+	
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 		<!-- Latest compiled and minified JavaScript -->
