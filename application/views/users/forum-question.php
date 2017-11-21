@@ -44,7 +44,7 @@
 		<div class="row justify-content-end">
 			<div class="col-2 side-bar bd-sidebar">
 
-				<div class="col-2">
+				<div class="col-sm-2">
 					
 					
 							
@@ -52,11 +52,9 @@
 						<input type="hidden" name="userid" value="<?= $cUser['users_id']; ?>">
 						<input type="submit" value="profile">
 					</form>
+						<br>
 						
-						
-				</div>
-
-				<div class="col-sm-2">
+				
 					<a class="btn btn-primary" href="<?= base_url();?>post-question" role="button">Post Question</a>
 					
 				</div>
@@ -89,7 +87,6 @@
 					
 				  	<input type="hidden" name="inputUserid" value="<?= $cUser['users_id'];  ?>">
 
-				  	<p>user id exist? <?= $cUser['users_id']; ?></p>
 
 				  	<input type="hidden" name="questionId" value="<?= $listOfAllUsersToView['id'];  ?>">
 

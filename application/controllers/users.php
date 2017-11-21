@@ -70,6 +70,14 @@ class Users extends CI_Controller {
 		$this->load->view('users/ngo-register', $data);
 	}
 
+    public function engg_reg()
+    {
+        $data = array(
+            'suc_msg' => $this->session->flashdata('success')
+            );
+        $this->load->view('users/engg-register', $data);
+    }
+
 	public function ngo_register()
 	{
 		$config['upload_path']          = './public/';
@@ -190,7 +198,7 @@ class Users extends CI_Controller {
                     );
                 $this->session->set_flashdata('success', 'Users successfully added. Thanks');
                 $last_id = $this->User->addEngineer( $data );
-                redirect(base_url('form-question'));
+                redirect(base_url('engg_reg'));
             }
         }
 
@@ -260,7 +268,7 @@ class Users extends CI_Controller {
         $data = array(
             'ctl_questionId'  => $this->input->post('questionId',true),
             );
-        var_dump($data);
+        //var_dump($data);
         //$this->session->set_userdata('currentComments', $resultComments);
 
         $resultQuestion = $this->forum->selectAQuestion($data);
