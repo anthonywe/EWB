@@ -61,7 +61,8 @@
 			</div>
 			<div class="col-sm-10 project-view ">
 
-                   <h4 class="thread-title"><?= $listOfAllUsersToView['question'];  ?></h4>
+                   <!-- <h4 class="thread-title"><?= $listOfAllUsersToView['question'];  ?></h4> -->
+                   <h4 class="thread-title"><?= $listOfAllUsersToView['question']; ?></h4>
                     <p class="project-text"> <?= $listOfAllUsersToView['description'];  ?> </p>
                     <p class="project-date"> <?= $listOfAllUsersToView['deadline'];  ?> 
                     </p>

@@ -47,6 +47,17 @@
 				  <div class="col-xs-offset-2 col-xs-4 col-sm-offset-3 col-sm-6"><h1> Registration Form </h1></div>
 				</div>
 			</div>
+
+			<div class="row">
+				<div class="col-xs-offset-2 col-xs-4 col-sm-offset-4 col-sm-6">
+			<!-- success message from registration process
+ -->			 <?php if( isset($suc_msg) ){ ?>
+                <div class="alert-success"><?= $suc_msg; ?>
+                </div>
+                <?php } ?> 
+				</div>
+			</div>
+
 			<div class="row">
 				<div class="col-xs-offset-2 col-xs-4 col-sm-offset-4 col-sm-6">
 			<?php
