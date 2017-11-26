@@ -41,6 +41,7 @@
 					</tbody>
 				</table>
 				<a href="<?=base_url(); ?>admin/home">Home</a>
+				<?php var_dump($allAnswers); ?>
 			</div>
 		</div>
 	</div>
