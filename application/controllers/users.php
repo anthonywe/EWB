@@ -715,8 +715,10 @@ class Users extends CI_Controller {
 
 		$result = $this->User->deleteQuestionPartOne($question_id);
 		$answer_id = $result['id'];
-
-		$this->User->deleteAnswersComments($answer_id);
+        //var_dump($answer_id); die();
+        if (isset($answer_id)){
+		  $this->User->deleteAnswersComments($answer_id);
+        }
 
 		$this->User->deleteQuestionPartTwo($question_id);
 

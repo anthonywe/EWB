@@ -158,7 +158,9 @@ class User extends CI_Model
    public function deleteAnswersComments($answer_id)
 
    {
+    //var_dump($answer_id); die();
     $query = "DELETE FROM comments WHERE answers_id = $answer_id";
+   // var_dump($query); die();
     $this->db->query($query);
 
    }
