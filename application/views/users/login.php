@@ -14,6 +14,33 @@
 
 	<body>
 		
+		<nav class="navbar sticky-top nave-barC ">
+			<ul class="nav navbar-nav navbar-left">
+				<li> <img src="<?=base_url(); ?>public/logo.jpg" id="logo"></li>
+			</ul>
+			<ul class="nav navbar-nav nav_style navbar-right">
+	        <li><a href="#">About</a></li>
+	        <li><a href="#">Projects</a></li>
+	        <li><a href="#">Events</a></li>
+	        <li><a href="#">Blog</a></li>
+	        <li><a href="#">Join us</a></li>
+	        <li><a href="<?=base_url(); ?>">Forum</a></li>
+	        <?php if( isset($cUser) ){ ?>
+               <li><a href="<?=base_url('logout'); ?>">Logout</a></li>
+                <?php } ?>
+            <?php if( !isset($cUser) ){ ?>
+               	<li><a href="<?=base_url('login'); ?>">Login</a></li>
+                <?php } ?>
+	        <li><a href="#">Become a partner</a></li>
+           	<button type="submit" name="submit" class=" btn" id="donate"> DONATE </button>
+	      	</ul>
+  		<!-- <span class="navbar-brand mb-0 h1">Navbar</span> -->
+		</nav>
+		
+		<div class="header-img">
+			<img src="<?=base_url(); ?>public/images2.jpg" alt="image">
+		</div>
+
 		<div class="container">
 			<div class="header">
 				<div class="row">
@@ -86,11 +113,39 @@
 			</div>
 
 			<div class="row">
-			  <div class="col-sm-offset-5 col-sm-6"> <a href="#"> Register </a></div>
+			  <div class="col-sm-offset-5 col-sm-6"> <a href="<?=base_url('register'); ?> "> Register </a></div>
 			</div>
 
 		</div>
 		
+		<div class="footer">
+			<div id="first_col">
+				<h4>Stay connected </h4>
+				<p>Get updates about projects, activities, events, vacancies and more.</p>
+				<button type="submit" name="submit" class="button_style btn"> GET OUR NEWSLETTER </button>
+			</div>
+
+			<div id="sec_col">
+				<h4>Follow Us</h4>
+				<a href="#"><img src="<?=base_url(); ?>public/fb.svg"></a>
+				<a href="#"><img src="<?=base_url(); ?>public/in.svg"></a>
+				<a href="#"><img src="<?=base_url(); ?>public/tw.svg"></a>
+			</div>
+			
+			<div id="third_col">
+			 <h4>Contact us </h4>
+				<p> <span>
+				Stichting Ingenieurs zonder Grenzen <br>
+				projects@ewbnl.org <br>
+				CIC Rotterdam, Stationsplein 45, 4th floor <br>
+				3013 AK Rotterdam <br>
+				KvK 65174275 – RSIN 856007638 <br>
+				Read our policy <br>
+				</span></p>
+			</div>
+		</div>
+
+
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 		<!-- Latest compiled and minified JavaScript -->
