@@ -78,29 +78,29 @@ class Users extends CI_Controller {
         $this->load->view('users/engg-register', $data);
     }
 
+    public function showNGO_reg()
+    {
+        $this->load->view('users/ngo-register');
+    }
+
 	public function ngo_register()
 	{
-		$config['upload_path']          = './public/';
-		$config['allowed_types']        = 'gif|jpg|png';
-		$config['max_size']             = 100;
-		$config['max_width']            = 1024;
-		$config['max_height']           = 768;
+        $config['upload_path']          = './public/';
+        $config['allowed_types']        = 'gif|jpg|png';
+        $config['max_size']             = 100;
+        $config['max_width']            = 1024;
+        $config['max_height']           = 768;
 
-		$this->load->library('upload', $config);
+        $this->load->library('upload', $config);
 
-		if ( ! $this->upload->do_upload('inputPic'))
-		{
-			$error = array('error' => $this->upload->display_errors());
-
-			$this->load->view('users/ngo-register', $error);
-		}
-		else
-		{	
-			// picture upload
-			$random_digit=rand(0000,9999);
-			$image_name = $_FILES["inputPic"] ["name"];
-			$new_file_name=$random_digit.$image_name;
-			$folder = "./public/".$new_file_name;
+        if ( $this->upload->do_upload('inputPic'))
+            {   
+                // picture upload
+                $random_digit=rand(0000,9999);
+                $image_name = $_FILES["inputPic"] ["name"];
+                $new_file_name=$random_digit.$image_name;
+                $folder = "./public/".$new_file_name;
+            }
 
 
 				// echo "registration process";
@@ -115,12 +115,15 @@ class Users extends CI_Controller {
         //$this->form_validation->set_rules('inputEmail',       'Email', 'required|valid_email|is_unique[users.email]');
           $this->form_validation->set_rules('inputEmail',       'Email', 'required|valid_email');
           $this->form_validation->set_rules('robotCheck',       'I am not a Robot check', 'required');
+
+          //var_dump($this->form_validation->run()); die();
           if ($this->form_validation->run() == FALSE)
 
             {
                 $this->load->view('users/ngo-register');
             }
             else{
+
                 $this->load->model('User');
                 $data = array(
                     'ctl_UserName'    => $this->input->post('inputUserName',true),
@@ -136,14 +139,15 @@ class Users extends CI_Controller {
                 );
                 $this->session->set_flashdata('success', 'Registration successfully done. Thanks');
                 $last_id = $this->User->addNGOUser( $data );
-                //var_dump($last_id); die();
-                //var_dump($last_id);
-                //$this->User->addNGOtoLogin( $data );
-                redirect(base_url('ngo_reg'));
-            }
-        
+               redirect(base_url('ngo_reg'));
         }
     }
+
+    public function showEngg_reg()
+    {
+        $this->load->view('users/engg-register');
+    }
+
     public function engg_register()
     {
         $config['upload_path']          = './public/';
@@ -152,19 +156,14 @@ class Users extends CI_Controller {
         $config['max_width']            = 1024;
         $config['max_height']           = 768;
         $this->load->library('upload', $config);
-        if ( ! $this->upload->do_upload('inputProfilePic'))
+        if (  $this->upload->do_upload('inputProfilePic'))
         {
-            $error = array('error' => $this->upload->display_errors());
-            $this->load->view('users/engg-register', $error);
-        }
-        else
-        {   
             // picture upload
             $random_digit=rand(0000,9999);
             $image_name = $_FILES["inputProfilePic"] ["name"];
             $new_file_name=$random_digit.$image_name;
             $folder = "./public/".$new_file_name;
-
+        }
 
             $this->form_validation->set_rules('inputUserName', 'Username', 'required|is_unique[login.username]');
             $this->form_validation->set_rules('inputPassword', 'Password', 'required|min_length[8]');
@@ -199,7 +198,7 @@ class Users extends CI_Controller {
                 $this->session->set_flashdata('success', 'Users successfully added. Thanks');
                 $last_id = $this->User->addEngineer( $data );
                 redirect(base_url('engg_reg'));
-            }
+            
         }
 
     }
@@ -249,6 +248,8 @@ class Users extends CI_Controller {
             'listOfAllUsersToView' => $resultQuestion,
             'listOfAllAnswers' => $resultAnswer,
             );
+
+        //var_dump($data); die();
         $this->load->view('users/forum-question',$data);
 
 

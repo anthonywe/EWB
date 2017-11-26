@@ -56,7 +56,7 @@
 			</div>
 			</form> -->
 			<div id="align_Ngo">
-				<form method="post" action="<?=base_url(); ?>ngo_register ">
+				<form method="post" action="<?=base_url(); ?>showNGO_reg ">
 				<div class="form-group row">
 				    <div class="col-xs-offset-3 col-xs-4 col-sm-offset-5 col-sm-4">
 	           		<button type="submit" name="submit" class="button_style btn"> NGO </button>
@@ -66,7 +66,7 @@
 			</div>
 
 			<div id="align_Engg">
-				<form method="post" action="<?=base_url(); ?>engg_register ">
+				<form method="post" action="<?=base_url(); ?>showEngg_reg ">
 				<div class="form-group row">
 				    <div class="col-xs-offset-2 col-xs-4 col-sm-offset-5 col-sm-4">
 	           		<button type="submit" name="submit" class="button_style btn"> Engineer </button>

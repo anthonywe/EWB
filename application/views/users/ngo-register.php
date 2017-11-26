@@ -64,7 +64,10 @@
 
 			<div class="row">
 				<div class="col-xs-offset-2 col-xs-4 col-sm-offset-4 col-sm-6">
-			<!-- validation errror message from form
+			<!-- profile pic upload errror message from form
+ -->
+ 					
+<!-- validation errror message from form
  -->
 					<?php
 						$err = validation_errors('<li>', '</li>');
@@ -79,6 +82,7 @@
 
 
 			<form method="post" action="<?=base_url(); ?>ngo_register " enctype="multipart/form-data">
+
 			  <div class="form-group row">
 			    <label for="inputUserName" class="col-sm-offset-2 col-sm-2 col-form-label">User Name</label>
 			    <div class="col-sm-4">

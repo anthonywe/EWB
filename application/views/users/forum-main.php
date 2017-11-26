@@ -41,29 +41,8 @@
 		</div>
 	
 	<div class="container">
-		<div class="row justify-content-end">
-			<div class="col-sm-offset-1 side-bar bd-sidebar">
-				<div class="col-1">
 
-                    <form method="post" action="<?= base_url();?>post-question">
-						<input type="submit" class="btn btn-primary" value="Post a Question">
-					</form>	
-
-					<!-- <div class="row">
-						<div class=" offset-lg-3">
-							<div class="input-group search-div">
-								<input type="text" class="search-topic" placeholder="Search" aria-label="Product name">
-								<span class="input-group-btn">
-									<button class="btn btn-secondary" type="button">Go</button>
-								</span>
-							</div>
-						</div>
-					</div> -->
-				</div>
-			</div>
-			<div class="col-sm-10 project-view ">
-
-			<div class="row">
+		<div class="row">
 				<div class="col-xs-offset-2 col-xs-4 col-sm-offset-4 col-sm-6">
 			<!-- ERROR message 
  -->			 <?php if( isset($error_msg) ){ ?>
@@ -74,7 +53,20 @@
 			</div>
 
 
+		<div class="row justify-content-end">
+			<div class="col-sm-offset-1 col-sm-1 side-bar bd-sidebar">
+                    <form method="post" action="<?= base_url();?>post-question">
+						<input type="submit" class="btn btn-primary" value="Post a Question">
+					</form>	
+					<br>
 
+                    <form method="post" action="<?= base_url();?>admin">
+						<input type="submit" class="btn btn-primary" value="Admin Panel">
+					</form>	
+			</div>
+			
+
+			<div class="col-sm-offset-1 col-sm-9">
 			<?php foreach( $listOfAllUsersToView as $item ) { ?>
 
 					<h3> <?= $item['question']; ?> </h3>
@@ -90,7 +82,7 @@
             <?php } ?>
 
 			</div>
-
+		</div>
 		</div>
 	</div>
 </div>
