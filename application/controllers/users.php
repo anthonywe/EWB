@@ -45,15 +45,25 @@ class Users extends CI_Controller {
         		$this->session->set_userdata('currentUser', $result);
         		redirect(base_url());
         		// echo 'I found this user:' . $result['name'];
-        	} else {
+        	} 
 
-        		$this->session->set_flashdata('error_msg', 'User is not found.');
+            else {
+                $result = $this->User->checkLoginAdminTable( 
+                    $username, $password);
+                if($result) {
+                    $this->session->set_userdata('currentUser', $result);
+                    redirect(base_url());
+                }
+                else{
 
-				$data = array(
-					'err_msg' => $this->session->flashdata('error_msg')
-					);
-				$this->load->view('users/login', $data);
-	        		//redirect(base_url(login));
+            		$this->session->set_flashdata('error_msg', 'User is not found.');
+
+    				$data = array(
+    					'err_msg' => $this->session->flashdata('error_msg')
+    					);
+    				$this->load->view('users/login', $data);
+    	        		//redirect(base_url(login));
+                }
         	}
         }	
 	}

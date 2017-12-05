@@ -41,6 +41,13 @@ class User extends CI_Model
             )->row_array();        
     }
 
+     public function checkLoginAdminTable( $username, $passwd )
+    {
+        return $this->db->query(
+            "SELECT * FROM admin WHERE username= ? AND password = ?" ,
+            array($username, $passwd)
+            )->row_array();        
+    }
 
    public function addEngineer($item)
    {
@@ -147,6 +154,10 @@ class User extends CI_Model
               ON users_id = users.id;")->result_array();
 
    }
+
+
+
+
 
    public function deleteAnswer($answer_id)
    {

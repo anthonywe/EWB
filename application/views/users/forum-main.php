@@ -59,10 +59,11 @@
 						<input type="submit" class="btn btn-primary" value="Post a Question">
 					</form>	
 					<br>
-
-                    <form method="post" action="<?= base_url();?>admin">
-						<input type="submit" class="btn btn-primary" value="Admin Panel">
-					</form>	
+					<?php if($cUser['username'] == "admin1"){ ?>
+	                    <form method="post" action="<?= base_url();?>admin">
+							<input type="submit" class="btn btn-primary" value="Admin Panel">
+						</form>	
+					<?php } ?>
 			</div>
 			
 
