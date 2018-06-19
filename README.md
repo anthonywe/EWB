@@ -18,7 +18,7 @@ Manage Engineers and NGO's registration
 * PHP 
 * MySQL 
 * Bootstrap
-* Javascript
+
 
 ### URL 
 http://ewbforum.000webhostapp.com/
