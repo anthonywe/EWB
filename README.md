@@ -1,6 +1,7 @@
 ## EWB Forum
 
-### Description * After three months of bootcamp at Restart Network. We made a project for Engineers without Borders together with my classmate @Saaeroos. This project was created using Code Igniter Framework.
+### Description 
+* After three months of bootcamp at Restart Network. We made a project for Engineers without Borders together with my classmate @Saaeroos. This project was created using Code Igniter Framework.
 
 Our task was to create a registration, log in page for engineers, NGO members and Admin section.
 
@@ -12,7 +13,12 @@ Engineers are able to answer questions from NGO Engineers can create and manage 
 
 Manage Engineers and NGO's registration
 
-###Technologies Used *Code Igniter Framework PHP MySQL Bootstrap Javascript
+### Technologies Used 
+*Code Igniter Framework 
+PHP 
+MySQL 
+Bootstrap
+Javascript
 
-###URL 
+### URL 
 http://ewbforum.000webhostapp.com/
