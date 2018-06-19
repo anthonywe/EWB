@@ -1,7 +1,7 @@
 ## EWB Forum
 
 ### Description 
- After three months of bootcamp at Restart Network. We made a project for Engineers without Borders together with my classmate @reshma1284. This project was created using Code Igniter Framework.
+ After three months of bootcamp at Restart Network. We made a project for Engineers without Borders together with my classmate @  reshma1284. This project was created using Code Igniter Framework.
 
 Our task was to create a registration, log in page for engineers, NGO members and Admin section.
 
